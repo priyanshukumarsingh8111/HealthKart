@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Find Doctors | HealthKart</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../css/doctors.css">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="main-header">
+
+    <div class="header-container">
+
+        <a href="../index.html" class="logo">
+            <i class="fa-solid fa-heart-pulse"></i>
+            Health<span>Kart</span>
+        </a>
+
+        <div class="header-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="doctorSearch"
+                placeholder="Search doctors, specialization..."
+            >
+        </div>
+
+        <nav class="header-nav">
+
+            <a href="../index.html">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
+
+            <a href="search.html">
+                <i class="fa-solid fa-pills"></i>
+                Medicines
+            </a>
+
+            <a href="doctors.html" class="active">
+                <i class="fa-solid fa-user-doctor"></i>
+                Doctors
+            </a>
+
+            <a href="cart.html">
+                <i class="fa-solid fa-cart-shopping"></i>
+                Cart
+                <span id="cartCount">0</span>
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="doctor-hero">
+
+    <div class="doctor-hero-content">
+
+        <div>
+
+            <span class="hero-badge">
+                <i class="fa-solid fa-shield-heart"></i>
+                Trusted Healthcare
+            </span>
+
+            <h1>
+                Consult the Right Doctor
+                <span>From Anywhere</span>
+            </h1>
+
+            <p>
+                Connect with qualified doctors and healthcare professionals
+                for personalized medical consultation.
+            </p>
+
+            <div class="hero-features">
+
+                <div>
+                    <i class="fa-solid fa-user-doctor"></i>
+                    <span>Verified Doctors</span>
+                </div>
+
+                <div>
+                    <i class="fa-solid fa-video"></i>
+                    <span>Online Consultation</span>
+                </div>
+
+                <div>
+                    <i class="fa-solid fa-clock"></i>
+                    <span>Flexible Timings</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="hero-doctor-icon">
+
+            <i class="fa-solid fa-user-doctor"></i>
+
+            <div class="floating-card card-one">
+                <i class="fa-solid fa-circle-check"></i>
+                Verified Doctors
+            </div>
+
+            <div class="floating-card card-two">
+                <i class="fa-solid fa-video"></i>
+                Online Consultation
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= MAIN CONTENT ================= -->
+
+<main class="doctors-container">
+
+    <!-- FILTER SECTION -->
+
+    <aside class="doctor-filters">
+
+        <div class="filter-header">
+
+            <h3>
+                <i class="fa-solid fa-filter"></i>
+                Filters
+            </h3>
+
+            <button onclick="clearFilters()">
+                Clear All
+            </button>
+
+        </div>
+
+
+        <!-- Specialization -->
+
+        <div class="filter-group">
+
+            <h4>Specialization</h4>
+
+            <label>
+                <input
+                    type="checkbox"
+                    value="General Physician"
+                    class="specialization-filter"
+                >
+                General Physician
+            </label>
+
+            <label>
+                <input
+                    type="checkbox"
+                    value="Dermatologist"
+                    class="specialization-filter"
+                >
+                Dermatologist
+            </label>
+
+            <label>
+                <input
+                    type="checkbox"
+                    value="Cardiologist"
+                    class="specialization-filter"
+                >
+                Cardiologist
+            </label>
+
+            <label>
+                <input
+                    type="checkbox"
+                    value="Pediatrician"
+                    class="specialization-filter"
+                >
+                Pediatrician
+            </label>
+
+            <label>
+                <input
+                    type="checkbox"
+                    value="Orthopedic"
+                    class="specialization-filter"
+                >
+                Orthopedic
+            </label>
+
+        </div>
+
+
+        <!-- Consultation Type -->
+
+        <div class="filter-group">
+
+            <h4>Consultation Type</h4>
+
+            <label>
+                <input type="checkbox">
+                Video Consultation
+            </label>
+
+            <label>
+                <input type="checkbox">
+                Audio Consultation
+            </label>
+
+            <label>
+                <input type="checkbox">
+                In-Clinic
+            </label>
+
+        </div>
+
+
+        <!-- Availability -->
+
+        <div class="filter-group">
+
+            <h4>Availability</h4>
+
+            <label>
+                <input type="checkbox">
+                Available Today
+            </label>
+
+            <label>
+                <input type="checkbox">
+                Available Tomorrow
+            </label>
+
+        </div>
+
+    </aside>
+
+
+    <!-- DOCTORS -->
+
+    <section class="doctor-results">
+
+        <div class="results-header">
+
+            <div>
+                <p class="small-heading">
+                    HealthKart Doctors
+                </p>
+
+                <h2>
+                    Find Doctors
+                </h2>
+
+                <p id="doctorResultText">
+                    Showing all available doctors
+                </p>
+            </div>
+
+            <select id="sortDoctors">
+
+                <option value="recommended">
+                    Recommended
+                </option>
+
+                <option value="rating">
+                    Highest Rated
+                </option>
+
+                <option value="fee-low">
+                    Fee: Low to High
+                </option>
+
+                <option value="fee-high">
+                    Fee: High to Low
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- DOCTOR GRID -->
+
+        <div id="doctorGrid" class="doctor-grid">
+
+
+            <!-- Doctor 1 -->
+
+            <article
+                class="doctor-card"
+                data-specialization="General Physician"
+                data-name="Dr. Rahul Sharma"
+                data-rating="4.8"
+                data-fee="499"
+            >
+
+                <div class="doctor-image">
+
+                    <div class="doctor-avatar">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+
+                    <span class="verified">
+                        <i class="fa-solid fa-circle-check"></i>
+                        Verified
+                    </span>
+
+                </div>
+
+
+                <div class="doctor-info">
+
+                    <h3>
+                        Dr. Rahul Sharma
+                    </h3>
+
+                    <p class="specialization">
+                        General Physician
+                    </p>
+
+                    <p class="experience">
+                        <i class="fa-solid fa-briefcase-medical"></i>
+                        12 years experience
+                    </p>
+
+                    <div class="doctor-rating">
+
+                        <span>
+                            <i class="fa-solid fa-star"></i>
+                            4.8
+                        </span>
+
+                        <small>
+                            245 consultations
+                        </small>
+
+                    </div>
+
+                    <div class="doctor-location">
+
+                        <i class="fa-solid fa-video"></i>
+
+                        Online Consultation
+
+                    </div>
+
+                    <div class="doctor-bottom">
+
+                        <div>
+
+                            <span class="fee-label">
+                                Consultation
+                            </span>
+
+                            <strong>
+                                ₹499
+                            </strong>
+
+                        </div>
+
+                        <span class="available">
+                            Available Today
+                        </span>
+
+                    </div>
+
+                    <div class="doctor-actions">
+
+                        <a
+                            href="doctor-profile.html?id=rahul"
+                            class="profile-btn"
+                        >
+                            View Profile
+                        </a>
+
+                        <button
+                            onclick="bookDoctor('Dr. Rahul Sharma')"
+                            class="book-btn"
+                        >
+                            Book
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- Doctor 2 -->
+
+            <article
+                class="doctor-card"
+                data-specialization="Dermatologist"
+                data-name="Dr. Priya Mehta"
+                data-rating="4.9"
+                data-fee="599"
+            >
+
+                <div class="doctor-image">
+
+                    <div class="doctor-avatar">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+
+                    <span class="verified">
+                        <i class="fa-solid fa-circle-check"></i>
+                        Verified
+                    </span>
+
+                </div>
+
+
+                <div class="doctor-info">
+
+                    <h3>
+                        Dr. Priya Mehta
+                    </h3>
+
+                    <p class="specialization">
+                        Dermatologist
+                    </p>
+
+                    <p class="experience">
+                        <i class="fa-solid fa-briefcase-medical"></i>
+                        9 years experience
+                    </p>
+
+                    <div class="doctor-rating">
+
+                        <span>
+                            <i class="fa-solid fa-star"></i>
+                            4.9
+                        </span>
+
+                        <small>
+                            310 consultations
+                        </small>
+
+                    </div>
+
+                    <div class="doctor-location">
+
+                        <i class="fa-solid fa-video"></i>
+
+                        Online Consultation
+
+                    </div>
+
+                    <div class="doctor-bottom">
+
+                        <div>
+
+                            <span class="fee-label">
+                                Consultation
+                            </span>
+
+                            <strong>
+                                ₹599
+                            </strong>
+
+                        </div>
+
+                        <span class="available">
+                            Available Today
+                        </span>
+
+                    </div>
+
+                    <div class="doctor-actions">
+
+                        <a
+                            href="doctor-profile.html?id=priya"
+                            class="profile-btn"
+                        >
+                            View Profile
+                        </a>
+
+                        <button
+                            onclick="bookDoctor('Dr. Priya Mehta')"
+                            class="book-btn"
+                        >
+                            Book
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- Doctor 3 -->
+
+            <article
+                class="doctor-card"
+                data-specialization="Cardiologist"
+                data-name="Dr. Amit Verma"
+                data-rating="4.7"
+                data-fee="799"
+            >
+
+                <div class="doctor-image">
+
+                    <div class="doctor-avatar">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+
+                    <span class="verified">
+                        <i class="fa-solid fa-circle-check"></i>
+                        Verified
+                    </span>
+
+                </div>
+
+
+                <div class="doctor-info">
+
+                    <h3>
+                        Dr. Amit Verma
+                    </h3>
+
+                    <p class="specialization">
+                        Cardiologist
+                    </p>
+
+                    <p class="experience">
+                        <i class="fa-solid fa-briefcase-medical"></i>
+                        15 years experience
+                    </p>
+
+                    <div class="doctor-rating">
+
+                        <span>
+                            <i class="fa-solid fa-star"></i>
+                            4.7
+                        </span>
+
+                        <small>
+                            185 consultations
+                        </small>
+
+                    </div>
+
+                    <div class="doctor-location">
+
+                        <i class="fa-solid fa-video"></i>
+
+                        Online Consultation
+
+                    </div>
+
+                    <div class="doctor-bottom">
+
+                        <div>
+
+                            <span class="fee-label">
+                                Consultation
+                            </span>
+
+                            <strong>
+                                ₹799
+                            </strong>
+
+                        </div>
+
+                        <span class="available tomorrow">
+                            Tomorrow
+                        </span>
+
+                    </div>
+
+                    <div class="doctor-actions">
+
+                        <a
+                            href="doctor-profile.html?id=amit"
+                            class="profile-btn"
+                        >
+                            View Profile
+                        </a>
+
+                        <button
+                            onclick="bookDoctor('Dr. Amit Verma')"
+                            class="book-btn"
+                        >
+                            Book
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- Doctor 4 -->
+
+            <article
+                class="doctor-card"
+                data-specialization="Pediatrician"
+                data-name="Dr. Neha Kapoor"
+                data-rating="4.8"
+                data-fee="549"
+            >
+
+                <div class="doctor-image">
+
+                    <div class="doctor-avatar">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+
+                    <span class="verified">
+                        <i class="fa-solid fa-circle-check"></i>
+                        Verified
+                    </span>
+
+                </div>
+
+
+                <div class="doctor-info">
+
+                    <h3>
+                        Dr. Neha Kapoor
+                    </h3>
+
+                    <p class="specialization">
+                        Pediatrician
+                    </p>
+
+                    <p class="experience">
+                        <i class="fa-solid fa-briefcase-medical"></i>
+                        8 years experience
+                    </p>
+
+                    <div class="doctor-rating">
+
+                        <span>
+                            <i class="fa-solid fa-star"></i>
+                            4.8
+                        </span>
+
+                        <small>
+                            220 consultations
+                        </small>
+
+                    </div>
+
+                    <div class="doctor-location">
+
+                        <i class="fa-solid fa-video"></i>
+
+                        Online Consultation
+
+                    </div>
+
+                    <div class="doctor-bottom">
+
+                        <div>
+
+                            <span class="fee-label">
+                                Consultation
+                            </span>
+
+                            <strong>
+                                ₹549
+                            </strong>
+
+                        </div>
+
+                        <span class="available">
+                            Available Today
+                        </span>
+
+                    </div>
+
+                    <div class="doctor-actions">
+
+                        <a
+                            href="doctor-profile.html?id=neha"
+                            class="profile-btn"
+                        >
+                            View Profile
+                        </a>
+
+                        <button
+                            onclick="bookDoctor('Dr. Neha Kapoor')"
+                            class="book-btn"
+                        >
+                            Book
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- Doctor 5 -->
+
+            <article
+                class="doctor-card"
+                data-specialization="Orthopedic"
+                data-name="Dr. Arjun Singh"
+                data-rating="4.6"
+                data-fee="699"
+            >
+
+                <div class="doctor-image">
+
+                    <div class="doctor-avatar">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+
+                    <span class="verified">
+                        <i class="fa-solid fa-circle-check"></i>
+                        Verified
+                    </span>
+
+                </div>
+
+
+                <div class="doctor-info">
+
+                    <h3>
+                        Dr. Arjun Singh
+                    </h3>
+
+                    <p class="specialization">
+                        Orthopedic
+                    </p>
+
+                    <p class="experience">
+                        <i class="fa-solid fa-briefcase-medical"></i>
+                        11 years experience
+                    </p>
+
+                    <div class="doctor-rating">
+
+                        <span>
+                            <i class="fa-solid fa-star"></i>
+                            4.6
+                        </span>
+
+                        <small>
+                            160 consultations
+                        </small>
+
+                    </div>
+
+                    <div class="doctor-location">
+
+                        <i class="fa-solid fa-video"></i>
+
+                        Online Consultation
+
+                    </div>
+
+                    <div class="doctor-bottom">
+
+                        <div>
+
+                            <span class="fee-label">
+                                Consultation
+                            </span>
+
+                            <strong>
+                                ₹699
+                            </strong>
+
+                        </div>
+
+                        <span class="available tomorrow">
+                            Tomorrow
+                        </span>
+
+                    </div>
+
+                    <div class="doctor-actions">
+
+                        <a
+                            href="doctor-profile.html?id=arjun"
+                            class="profile-btn"
+                        >
+                            View Profile
+                        </a>
+
+                        <button
+                            onclick="bookDoctor('Dr. Arjun Singh')"
+                            class="book-btn"
+                        >
+                            Book
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- Doctor 6 -->
+
+            <article
+                class="doctor-card"
+                data-specialization="General Physician"
+                data-name="Dr. Ananya Gupta"
+                data-rating="4.9"
+                data-fee="449"
+            >
+
+                <div class="doctor-image">
+
+                    <div class="doctor-avatar">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+
+                    <span class="verified">
+                        <i class="fa-solid fa-circle-check"></i>
+                        Verified
+                    </span>
+
+                </div>
+
+
+                <div class="doctor-info">
+
+                    <h3>
+                        Dr. Ananya Gupta
+                    </h3>
+
+                    <p class="specialization">
+                        General Physician
+                    </p>
+
+                    <p class="experience">
+                        <i class="fa-solid fa-briefcase-medical"></i>
+                        7 years experience
+                    </p>
+
+                    <div class="doctor-rating">
+
+                        <span>
+                            <i class="fa-solid fa-star"></i>
+                            4.9
+                        </span>
+
+                        <small>
+                            275 consultations
+                        </small>
+
+                    </div>
+
+                    <div class="doctor-location">
+
+                        <i class="fa-solid fa-video"></i>
+
+                        Online Consultation
+
+                    </div>
+
+                    <div class="doctor-bottom">
+
+                        <div>
+
+                            <span class="fee-label">
+                                Consultation
+                            </span>
+
+                            <strong>
+                                ₹449
+                            </strong>
+
+                        </div>
+
+                        <span class="available">
+                            Available Today
+                        </span>
+
+                    </div>
+
+                    <div class="doctor-actions">
+
+                        <a
+                            href="doctor-profile.html?id=ananya"
+                            class="profile-btn"
+                        >
+                            View Profile
+                        </a>
+
+                        <button
+                            onclick="bookDoctor('Dr. Ananya Gupta')"
+                            class="book-btn"
+                        >
+                            Book
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </div>
+
+
+        <!-- NO RESULT -->
+
+        <div id="noDoctors" class="no-doctors">
+
+            <i class="fa-solid fa-user-doctor"></i>
+
+            <h3>
+                No doctors found
+            </h3>
+
+            <p>
+                Try another doctor name or specialization.
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="doctor-footer">
+
+    <div>
+
+        <h3>
+            <i class="fa-solid fa-heart-pulse"></i>
+            HealthKart
+        </h3>
+
+        <p>
+            Making healthcare simpler and more accessible.
+        </p>
+
+    </div>
+
+    <p>
+        © 2026 HealthKart. All rights reserved.
+    </p>
+
+</footer>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/doctors.js"></script>
+<script type="module" src="../js/nav-auth.js"></script>
+</body>
+</html>

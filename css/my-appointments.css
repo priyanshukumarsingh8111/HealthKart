@@ -1,0 +1,290 @@
+/* My Appointments CSS */
+
+.appointments-page {
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px 20px 80px;
+}
+
+.page-header {
+    margin-bottom: 25px;
+}
+
+.page-header h1 {
+    font-size: 28px;
+    color: #1a3026;
+    margin: 8px 0 4px;
+}
+
+.page-header p {
+    color: #667970;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Tabs */
+.tabs-container {
+    display: flex;
+    gap: 10px;
+    border-bottom: 1px solid #e1ebe6;
+    margin-bottom: 25px;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #62746a;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.2s ease;
+}
+
+.tab-btn:hover {
+    color: #0b9f6e;
+}
+
+.tab-btn.active {
+    color: #0b9f6e;
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #0b9f6e;
+    border-radius: 3px 3px 0 0;
+}
+
+.tab-count {
+    background: #eef7f3;
+    color: #0b9f6e;
+    font-size: 11px;
+    padding: 2px 7px;
+    border-radius: 10px;
+}
+
+.tab-btn.active .tab-count {
+    background: #0b9f6e;
+    color: #fff;
+}
+
+/* Appointment Grid & Cards */
+.appointments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.appointment-card-item {
+    background: #fff;
+    border: 1px solid #e2ece7;
+    border-radius: 16px;
+    padding: 22px;
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 22px;
+    align-items: center;
+    box-shadow: 0 4px 16px rgba(16, 50, 36, 0.04);
+    transition: 0.2s ease;
+}
+
+.appointment-card-item:hover {
+    box-shadow: 0 8px 25px rgba(16, 50, 36, 0.08);
+    border-color: #cde7dc;
+}
+
+.doctor-thumb {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #eef7f3;
+    border: 2px solid #bde2d5;
+    flex-shrink: 0;
+}
+
+.doctor-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.appointment-info h3 {
+    margin: 0 0 4px;
+    font-size: 17px;
+    color: #1a3026;
+}
+
+.appointment-info .doctor-spec {
+    color: #0b9f6e;
+    font-size: 13px;
+    font-weight: 700;
+    margin: 0 0 6px;
+}
+
+.appointment-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 10px;
+    font-size: 13px;
+    color: #55675e;
+}
+
+.appointment-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.appointment-meta i {
+    color: #0b9f6e;
+}
+
+.appointment-status-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+/* Status Badges */
+.badge-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 5px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+.badge-status.confirmed {
+    background: #e6f8f0;
+    color: #09875d;
+}
+
+.badge-status.completed {
+    background: #edf2f7;
+    color: #4a5568;
+}
+
+.badge-status.cancelled {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-video-call {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #0b9f6e;
+    color: #fff !important;
+    padding: 10px 18px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: 0.2s ease;
+    box-shadow: 0 4px 12px rgba(11, 159, 110, 0.25);
+}
+
+.btn-video-call:hover {
+    background: #087e58;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(11, 159, 110, 0.35);
+}
+
+.btn-cancel-appt {
+    background: #fff;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+    padding: 10px 14px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.15s ease;
+}
+
+.btn-cancel-appt:hover {
+    background: #fef2f2;
+}
+
+/* Empty State */
+.empty-appts {
+    background: #fff;
+    border: 1px dashed #cfe0d8;
+    border-radius: 16px;
+    padding: 60px 20px;
+    text-align: center;
+    color: #687971;
+}
+
+.empty-appts i {
+    font-size: 46px;
+    color: #0b9f6e;
+    margin-bottom: 14px;
+    display: block;
+}
+
+.empty-appts h3 {
+    margin: 0 0 8px;
+    font-size: 18px;
+    color: #1e332a;
+}
+
+.empty-appts p {
+    margin: 0 0 20px;
+    font-size: 13px;
+}
+
+.book-new-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #0b9f6e;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .appointment-card-item {
+        grid-template-columns: 1fr;
+        text-align: left;
+    }
+    .appointment-status-col {
+        align-items: flex-start;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        border-top: 1px solid #edf2ef;
+        padding-top: 14px;
+    }
+    .doctor-thumb {
+        width: 60px;
+        height: 60px;
+    }
+}

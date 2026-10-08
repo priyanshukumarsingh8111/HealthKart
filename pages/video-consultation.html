@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Consultation | HealthKart</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../css/video-consultation.css">
+</head>
+
+<body>
+
+<!-- Header -->
+<header class="navbar">
+    <a href="../index.html" class="logo">
+        <i class="fa-solid fa-heart-pulse"></i>
+        <span>Health<span>Kart</span></span>
+    </a>
+
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="search.html">Medicines</a>
+        <a href="doctors.html">Doctors</a>
+        <a href="my-appointments.html">My Appointments</a>
+    </nav>
+
+    <div class="nav-actions" style="display:flex; align-items:center; gap:12px;">
+        <button id="copyConsultationLinkBtn" type="button" style="background:#e8f7f0; border:1px solid #c2ebd9; color:#0b9f6e; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:700; cursor:pointer;" title="Copy doctor/patient link for simultaneous consultation">
+            <i class="fa-solid fa-copy"></i> Copy Other Participant Link
+        </button>
+        <a href="my-appointments.html" style="font-size:13px; font-weight:700; color:#0b9f6e; text-decoration:none;">
+            <i class="fa-solid fa-arrow-left"></i> Back to Appointments
+        </a>
+    </div>
+</header>
+
+<main class="video-consultation-container">
+
+    <!-- Top Card -->
+    <div class="video-header-card">
+        <div class="video-patient-info">
+            <div style="width:48px; height:48px; border-radius:50%; background:#e8f7f0; color:#0b9f6e; display:flex; align-items:center; justify-content:center; font-size:22px;">
+                <i class="fa-solid fa-video"></i>
+            </div>
+            <div>
+                <h2 id="callTitle">Doctor-Patient Video Consultation</h2>
+                <p id="callSubtitle">Connecting to secure encrypted medical consultation room...</p>
+            </div>
+        </div>
+
+        <div id="callStatusBadge" class="call-status-badge connecting">
+            <i class="fa-solid fa-circle" style="font-size:7px;"></i>
+            <span id="callStatusText">Waiting for peer...</span>
+        </div>
+    </div>
+
+    <!-- Permission / Device Alerts -->
+    <div id="permissionAlertBanner" class="permission-alert-banner">
+        <div>
+            <i class="fa-solid fa-triangle-exclamation" style="margin-right:8px;"></i>
+            <span id="permissionAlertMsg">Camera and microphone access are required for this consultation.</span>
+        </div>
+        <button type="button" onclick="this.parentElement.style.display='none'" style="background:none; border:none; cursor:pointer; font-weight:700; color:inherit;">
+            Dismiss
+        </button>
+    </div>
+
+    <!-- Video Stage -->
+    <section class="video-stage" id="videoStage">
+
+        <!-- Remote Video (Doctor or Patient) -->
+        <div class="remote-video-container">
+            <video id="remoteVideo" autoplay playsinline></video>
+
+            <!-- Placeholder when peer has not connected yet -->
+            <div class="remote-placeholder" id="remotePlaceholder">
+                <div class="avatar-pulse">
+                    <i class="fa-solid fa-user-doctor" id="placeholderIcon"></i>
+                </div>
+                <h3 id="placeholderTitle" style="margin:0 0 8px; font-size:20px; color:#fff;">Connecting to Doctor...</h3>
+                <p id="placeholderMsg" style="margin:0; font-size:14px; max-width:400px; line-height:1.5;">
+                    Please stay on this screen. The consultation will automatically connect as soon as the doctor enters the room.
+                </p>
+                <div style="margin-top:20px; font-size:12px; background:rgba(255,255,255,0.08); padding:8px 16px; border-radius:20px; color:#c3d8cd;">
+                    <i class="fa-solid fa-shield-halved" style="color:#0b9f6e; margin-right:6px;"></i>
+                    End-to-End Encrypted WebRTC Session
+                </div>
+            </div>
+        </div>
+
+        <!-- Local Video (Self) -->
+        <div class="local-video-container" id="localVideoContainer">
+            <video id="localVideo" autoplay playsinline muted></video>
+            <span class="local-label" id="localVideoLabel">You</span>
+        </div>
+
+        <!-- Control Bar -->
+        <div class="call-controls-bar">
+            <!-- Mic Toggle -->
+            <button type="button" class="call-control-btn" id="micToggleBtn" title="Mute / Unmute Microphone">
+                <i class="fa-solid fa-microphone"></i>
+            </button>
+
+            <!-- Camera Toggle -->
+            <button type="button" class="call-control-btn" id="camToggleBtn" title="Camera On / Off">
+                <i class="fa-solid fa-video"></i>
+            </button>
+
+            <!-- Screen Share -->
+            <button type="button" class="call-control-btn" id="screenShareBtn" title="Share Screen">
+                <i class="fa-solid fa-desktop"></i>
+            </button>
+
+            <!-- In-Call Chat Toggle -->
+            <button type="button" class="call-control-btn" id="chatToggleBtn" title="In-Call Chat" style="position:relative;">
+                <i class="fa-solid fa-comments"></i>
+                <span class="chat-unread-dot" id="chatUnreadDot" style="display:none;"></span>
+            </button>
+
+            <!-- Doctor Prescription Pad -->
+            <button type="button" class="call-control-btn" id="doctorRxBtn" title="Issue Digital Prescription" style="background:#0b9f6e;">
+                <i class="fa-solid fa-file-prescription"></i>
+            </button>
+
+            <!-- Call Timer -->
+            <div class="call-timer" id="callTimer">
+                00:00
+            </div>
+
+            <!-- Fullscreen -->
+            <button type="button" class="call-control-btn" id="fullscreenBtn" title="Toggle Fullscreen">
+                <i class="fa-solid fa-expand"></i>
+            </button>
+
+            <!-- End Call -->
+            <button type="button" class="call-control-btn end-call" id="endCallBtn" title="End Consultation">
+                <i class="fa-solid fa-phone-slash"></i>
+            </button>
+        </div>
+
+        <!-- In-Call Real-Time Chat Drawer -->
+        <aside class="in-call-chat-panel" id="inCallChatPanel">
+            <div class="chat-panel-header">
+                <h4><i class="fa-solid fa-comments"></i> In-Call Messages</h4>
+                <button type="button" id="closeChatBtn" class="chat-close-btn" title="Close Chat">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="chat-messages-container" id="inCallChatMessages">
+                <div class="chat-empty-hint">
+                    <i class="fa-solid fa-shield-heart" style="font-size:20px; color:#0b9f6e; display:block; margin-bottom:6px;"></i>
+                    End-to-end encrypted medical chat. Messages are shared securely between doctor and patient during this consultation.
+                </div>
+            </div>
+            <div class="chat-input-row">
+                <input type="text" id="inCallChatInput" placeholder="Type message or medical note..." />
+                <button type="button" id="inCallChatSendBtn">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </aside>
+
+    </section>
+
+    <!-- DOCTOR PRESCRIPTION PAD MODAL -->
+    <div class="modal-overlay" id="doctorRxModal" style="display:none;">
+        <div class="rx-modal-card">
+            <div class="rx-modal-header">
+                <div>
+                    <h3 style="margin:0 0 4px; font-size:18px; color:#172520;">
+                        <i class="fa-solid fa-file-prescription" style="color:#0b9f6e;"></i> Issue Digital Prescription
+                    </h3>
+                    <p style="margin:0; font-size:12.5px; color:#687b72;">
+                        Prescribe medicines (with meal eating timings) and yoga routines. AI Agent will automatically schedule real-time reminders for the patient.
+                    </p>
+                </div>
+                <button type="button" class="rx-close-btn" id="closeRxModalBtn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <form id="doctorRxForm" class="rx-form-content">
+                <div class="rx-form-group">
+                    <label>Patient Diagnosis & Clinical Findings *</label>
+                    <input type="text" id="rxDiagnosis" required placeholder="e.g. Acute upper respiratory infection & posture fatigue" />
+                </div>
+
+                <!-- Medicines Section -->
+                <div class="rx-section-block">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <label style="font-weight:700; font-size:13px; color:#172520;">
+                            <i class="fa-solid fa-pills" style="color:#0b9f6e;"></i> Prescribed Medicines (Eating Schedule)
+                        </label>
+                        <button type="button" class="rx-add-btn" id="rxAddMedBtn">
+                            <i class="fa-solid fa-plus"></i> Add Medicine
+                        </button>
+                    </div>
+                    <div id="rxMedicinesContainer" class="rx-items-list">
+                        <!-- Dynamic Medicine Rows -->
+                    </div>
+                </div>
+
+                <!-- Yoga & Lifestyle Section -->
+                <div class="rx-section-block">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <label style="font-weight:700; font-size:13px; color:#172520;">
+                            <i class="fa-solid fa-spa" style="color:#0284c7;"></i> Prescribed Yoga & Lifestyle Routines
+                        </label>
+                        <button type="button" class="rx-add-btn" id="rxAddYogaBtn" style="background:#e0f2fe; color:#0284c7;">
+                            <i class="fa-solid fa-plus"></i> Add Yoga Routine
+                        </button>
+                    </div>
+                    <div id="rxYogaContainer" class="rx-items-list">
+                        <!-- Dynamic Yoga Rows -->
+                    </div>
+                </div>
+
+                <div class="rx-form-group">
+                    <label>Doctor Advice & Dietary Guidelines</label>
+                    <textarea id="rxAdvice" rows="2" placeholder="e.g. Stay hydrated (3L water), avoid cold drinks, practice yoga on an empty stomach."></textarea>
+                </div>
+
+                <div class="rx-modal-actions">
+                    <button type="button" class="rx-cancel-btn" id="cancelRxBtn">Cancel</button>
+                    <button type="submit" class="rx-submit-btn" id="submitRxBtn">
+                        <i class="fa-solid fa-paper-plane"></i> Send Prescription & Schedule AI Reminders
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- PATIENT PRESCRIPTION RECEIVED POPUP MODAL -->
+    <div class="modal-overlay" id="patientRxReceivedModal" style="display:none;">
+        <div class="rx-received-card">
+            <div style="width:54px; height:54px; border-radius:50%; background:#e8f9f2; color:#0b9f6e; display:flex; align-items:center; justify-content:center; font-size:26px; margin:0 auto 12px;">
+                <i class="fa-solid fa-prescription"></i>
+            </div>
+            <h3 style="margin:0 0 6px; font-size:19px; color:#162b21; text-align:center;">New Prescription Received!</h3>
+            <p style="margin:0 0 16px; font-size:13px; color:#60736a; text-align:center;" id="patientRxDoctorText">
+                Your consulting doctor has issued your prescription.
+            </p>
+
+            <div id="patientRxPreviewBody" style="background:#f8faf9; border:1px solid #e2ece7; border-radius:12px; padding:14px; margin-bottom:18px; max-height:280px; overflow-y:auto; font-size:13px; text-align:left;">
+                <!-- Prescription Preview Content -->
+            </div>
+
+            <div style="display:flex; gap:10px;">
+                <a href="prescriptions.html" class="rx-submit-btn" style="flex:1; text-align:center; text-decoration:none;">
+                    <i class="fa-solid fa-file-arrow-down"></i> View Full Prescription
+                </a>
+                <button type="button" class="rx-cancel-btn" onclick="document.getElementById('patientRxReceivedModal').style.display='none'">
+                    Continue Call
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Consultation Summary Below Video -->
+    <div style="margin-top:24px; display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:18px;">
+        <div style="background:#fff; border:1px solid #e2ebe6; border-radius:14px; padding:18px;">
+            <h4 style="margin:0 0 10px; font-size:14px; color:#1e332b;"><i class="fa-solid fa-circle-info" style="color:#0b9f6e;"></i> Consultation Details</h4>
+            <div style="font-size:13px; color:#506258; line-height:1.7;">
+                <div>Appointment ID: <strong id="detailsApptId">-</strong></div>
+                <div>Doctor: <strong id="detailsDoctor">-</strong></div>
+                <div>Patient: <strong id="detailsPatient">-</strong></div>
+                <div>Specialization: <strong id="detailsSpec">-</strong></div>
+            </div>
+        </div>
+
+        <div style="background:#fff; border:1px solid #e2ebe6; border-radius:14px; padding:18px;">
+            <h4 style="margin:0 0 10px; font-size:14px; color:#1e332b;"><i class="fa-solid fa-notes-medical" style="color:#0b9f6e;"></i> Reason for Visit</h4>
+            <p id="detailsConcern" style="margin:0; font-size:13px; color:#506258; line-height:1.5;">
+                General health consultation
+            </p>
+        </div>
+
+        <div style="background:#f4fbf7; border:1px solid #c2e8d7; border-radius:14px; padding:18px; display:flex; flex-direction:column; justify-content:center;">
+            <div style="font-size:13px; font-weight:700; color:#0b9f6e; margin-bottom:4px;">
+                <i class="fa-solid fa-shield-heart"></i> HIPAA / Telehealth Compliant
+            </div>
+            <p style="margin:0; font-size:12px; color:#4a6558;">
+                Real-time audio, video, and prescription sharing are encrypted and securely linked to your HealthKart health record.
+            </p>
+        </div>
+    </div>
+
+</main>
+
+<script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+<script>if (typeof io === "undefined") { document.write('<script src="/socket.io/socket.io.js"><\/script>'); }</script>
+<script type="module" src="../js/video-consultation.js"></script>
+<script type="module" src="../js/nav-auth.js"></script>
+</body>
+</html>

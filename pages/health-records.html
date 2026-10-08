@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Health Records | HealthKart</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Inter", sans-serif;
+            background: #f5faf8;
+            color: #17231f;
+        }
+
+        .records-page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 35px 20px 60px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #6b7772;
+            margin-bottom: 25px;
+        }
+
+        .breadcrumb a {
+            color: #0b9f6e;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .page-header {
+            background: white;
+            border: 1px solid #e4eee9;
+            border-radius: 18px;
+            padding: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(18, 83, 62, 0.06);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .header-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 15px;
+            background: #e7f8f1;
+            color: #0b9f6e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+        }
+
+        .page-header h1 {
+            margin: 0 0 6px;
+            font-size: 28px;
+        }
+
+        .page-header p {
+            margin: 0;
+            color: #6d7975;
+            font-size: 14px;
+        }
+
+        .add-record-btn {
+            border: none;
+            background: #0b9f6e;
+            color: white;
+            padding: 13px 19px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+
+        .add-record-btn:hover {
+            background: #087f59;
+            transform: translateY(-1px);
+        }
+
+        .search-box {
+            background: white;
+            border: 1px solid #e4eee9;
+            border-radius: 15px;
+            padding: 15px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .search-box i {
+            color: #7d8985;
+        }
+
+        .search-box input {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-size: 14px;
+            font-family: inherit;
+            background: transparent;
+        }
+
+        .records-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .records-title h2 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .records-title span {
+            color: #78847f;
+            font-size: 13px;
+        }
+
+        #recordsContainer {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .record-card {
+            background: white;
+            border: 1px solid #e4eee9;
+            border-radius: 17px;
+            padding: 20px;
+            display: flex;
+            gap: 16px;
+            box-shadow: 0 7px 20px rgba(18, 83, 62, 0.05);
+        }
+
+        .record-icon {
+            min-width: 52px;
+            width: 52px;
+            height: 52px;
+            border-radius: 13px;
+            background: #e7f8f1;
+            color: #0b9f6e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+        }
+
+        .record-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .record-content h3 {
+            margin: 0 0 10px;
+            font-size: 17px;
+        }
+
+        .record-doctor,
+        .record-date {
+            margin: 6px 0;
+            color: #66736e;
+            font-size: 13px;
+        }
+
+        .record-doctor i,
+        .record-date i {
+            width: 18px;
+            color: #0b9f6e;
+        }
+
+        .record-notes {
+            margin: 12px 0 15px;
+            color: #596660;
+            font-size: 13px;
+            line-height: 1.6;
+            background: #f7faf9;
+            padding: 10px;
+            border-radius: 9px;
+        }
+
+        .record-actions {
+            display: flex;
+            gap: 9px;
+        }
+
+        .record-actions button {
+            border: none;
+            padding: 9px 13px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .view-record {
+            background: #e7f8f1;
+            color: #087f59;
+        }
+
+        .delete-record {
+            background: #fff0f0;
+            color: #d33a3a;
+        }
+
+        .empty-state {
+            background: white;
+            border: 1px dashed #cddbd5;
+            border-radius: 18px;
+            padding: 55px 20px;
+            text-align: center;
+        }
+
+        .empty-state-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 18px;
+            border-radius: 50%;
+            background: #e7f8f1;
+            color: #0b9f6e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .empty-state h3 {
+            margin: 0 0 8px;
+            font-size: 19px;
+        }
+
+        .empty-state p {
+            margin: 0 auto 20px;
+            max-width: 450px;
+            color: #74807c;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .empty-add-btn {
+            border: none;
+            background: #0b9f6e;
+            color: white;
+            padding: 11px 18px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        /* Modal */
+
+        .record-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(16, 31, 25, 0.55);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 9999;
+        }
+
+        .record-modal.show {
+            display: flex;
+        }
+
+        .modal-box {
+            width: 100%;
+            max-width: 520px;
+            background: white;
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 21px;
+        }
+
+        .close-modal {
+            width: 34px;
+            height: 34px;
+            border: none;
+            border-radius: 50%;
+            background: #f2f5f4;
+            cursor: pointer;
+            color: #56625e;
+            font-size: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            border: 1px solid #dbe6e1;
+            border-radius: 9px;
+            padding: 11px 12px;
+            outline: none;
+            font-family: inherit;
+            font-size: 13px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #0b9f6e;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .required {
+            color: #e04444;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .cancel-btn,
+        .save-record-btn {
+            border: none;
+            padding: 11px 17px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 700;
+        }
+
+        .cancel-btn {
+            background: #f0f3f2;
+            color: #4d5955;
+        }
+
+        .save-record-btn {
+            background: #0b9f6e;
+            color: white;
+        }
+
+        @media (max-width: 800px) {
+
+            .page-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            #recordsContainer {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 520px) {
+
+            .records-page {
+                padding: 25px 14px 45px;
+            }
+
+            .page-header {
+                padding: 20px;
+            }
+
+            .page-header h1 {
+                font-size: 23px;
+            }
+
+            .header-left {
+                align-items: flex-start;
+            }
+
+            .record-card {
+                padding: 16px;
+            }
+
+            .record-icon {
+                min-width: 44px;
+                width: 44px;
+                height: 44px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body data-require-auth>
+
+    <header class="navbar">
+
+        <a href="../index.html" class="logo">
+            <i class="fa-solid fa-heart-pulse"></i>
+            <span>Health<span>Kart</span></span>
+        </a>
+
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="search.html">Medicines</a>
+            <a href="compare.html">Compare</a>
+            <a href="doctors.html">Doctors</a>
+            <a href="my-health.html" style="color:#0b9f6e">My Health</a>
+        </nav>
+
+        <div class="nav-actions">
+            <a href="cart.html" class="cart-icon" aria-label="Cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span id="cartCount">0</span>
+            </a>
+        </div>
+
+    </header>
+
+
+    <main class="records-page">
+
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="../index.html">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
+
+            <i class="fa-solid fa-chevron-right"></i>
+
+            <a href="my-health.html">
+                My Health
+            </a>
+
+            <i class="fa-solid fa-chevron-right"></i>
+
+            <span>Health Records</span>
+        </div>
+
+
+        <!-- Page Header -->
+        <section class="page-header">
+
+            <div class="header-left">
+
+                <div class="header-icon">
+                    <i class="fa-solid fa-file-medical"></i>
+                </div>
+
+                <div>
+                    <h1>Health Records</h1>
+
+                    <p>
+                        Keep your medical reports and health information organized.
+                    </p>
+                </div>
+
+            </div>
+
+            <button
+                class="add-record-btn"
+                type="button"
+                onclick="openRecordModal()"
+            >
+                <i class="fa-solid fa-plus"></i>
+                Add New Record
+            </button>
+
+        </section>
+
+
+        <!-- Search -->
+        <div class="search-box">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search health records, doctors or notes..."
+            >
+
+        </div>
+
+
+        <!-- Records Heading -->
+        <div class="records-title">
+
+            <h2>My Health Records</h2>
+
+            <span>
+                Your saved medical information
+            </span>
+
+        </div>
+
+
+        <!-- Records -->
+        <section id="recordsContainer"></section>
+
+
+        <!-- Empty State -->
+        <section
+            class="empty-state"
+            id="emptyState"
+        >
+
+            <div class="empty-state-icon">
+                <i class="fa-solid fa-folder-open"></i>
+            </div>
+
+            <h3>No Health Records Yet</h3>
+
+            <p>
+                Add your medical reports, prescriptions, test results
+                or other important health information here.
+            </p>
+
+            <button
+                class="empty-add-btn"
+                type="button"
+                onclick="openRecordModal()"
+            >
+                <i class="fa-solid fa-plus"></i>
+                Add Health Record
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- Add Record Modal -->
+    <div
+        class="record-modal"
+        id="recordModal"
+    >
+
+        <div class="modal-box">
+
+            <div class="modal-header">
+
+                <h2>Add Health Record</h2>
+
+                <button
+                    class="close-modal"
+                    type="button"
+                    onclick="closeRecordModal()"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <form id="recordForm">
+
+                <div class="form-group">
+
+                    <label for="recordName">
+                        Record Name <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="recordName"
+                        placeholder="e.g. Blood Test Report"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="doctorName">
+                        Doctor / Hospital
+                    </label>
+
+                    <input
+                        type="text"
+                        id="doctorName"
+                        placeholder="e.g. Apollo Hospital"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="recordDate">
+                        Record Date <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="date"
+                        id="recordDate"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="recordNotes">
+                        Notes
+                    </label>
+
+                    <textarea
+                        id="recordNotes"
+                        placeholder="Add any important information..."
+                    ></textarea>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        class="cancel-btn"
+                        type="button"
+                        onclick="closeRecordModal()"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        class="save-record-btn"
+                        type="submit"
+                    >
+                        <i class="fa-solid fa-check"></i>
+                        Save Record
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../js/health-records.js"></script>
+    <script type="module" src="../js/nav-auth.js"></script>
+</body>
+</html>

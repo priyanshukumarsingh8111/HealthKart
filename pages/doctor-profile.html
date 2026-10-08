@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Doctor Profile | HealthKart</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link
+        rel="stylesheet"
+        href="../css/doctor-profile.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header class="main-header">
+
+    <div class="header-container">
+
+        <a href="../index.html" class="logo">
+
+            <i class="fa-solid fa-heart-pulse"></i>
+
+            Health<span>Kart</span>
+
+        </a>
+
+
+        <div class="header-search">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                placeholder="Search medicines, doctors..."
+            >
+
+        </div>
+
+
+        <nav class="header-nav">
+
+            <a href="../index.html">
+
+                <i class="fa-solid fa-house"></i>
+
+                Home
+
+            </a>
+
+
+            <a href="search.html">
+
+                <i class="fa-solid fa-pills"></i>
+
+                Medicines
+
+            </a>
+
+
+            <a href="doctors.html" class="active">
+
+                <i class="fa-solid fa-user-doctor"></i>
+
+                Doctors
+
+            </a>
+
+
+            <a href="cart.html">
+
+                <i class="fa-solid fa-cart-shopping"></i>
+
+                Cart
+
+                <span id="cartCount">0</span>
+
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+
+<!-- ================= BREADCRUMB ================= -->
+
+<div class="breadcrumb-container">
+
+    <div class="breadcrumb">
+
+        <a href="../index.html">
+            Home
+        </a>
+
+        <i class="fa-solid fa-chevron-right"></i>
+
+        <a href="doctors.html">
+            Doctors
+        </a>
+
+        <i class="fa-solid fa-chevron-right"></i>
+
+        <span>
+            Doctor Profile
+        </span>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= MAIN PROFILE ================= -->
+
+<main class="profile-container">
+
+
+    <!-- PROFILE CARD -->
+
+    <section class="profile-top">
+
+
+        <!-- LEFT -->
+
+        <div class="profile-left">
+
+            <div class="doctor-large-avatar">
+
+                <i class="fa-solid fa-user-doctor"></i>
+
+            </div>
+
+
+            <div class="profile-main-info">
+
+                <div class="verified-badge">
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    Verified Doctor
+
+                </div>
+
+
+                <h1 id="doctorName">
+                    Dr. Rahul Sharma
+                </h1>
+
+
+                <p
+                    class="profile-specialization"
+                    id="doctorSpecialization"
+                >
+                    General Physician
+                </p>
+
+
+                <p class="profile-qualification">
+
+                    MBBS, MD - General Medicine
+
+                </p>
+
+
+                <div class="profile-stats">
+
+
+                    <div>
+
+                        <strong id="doctorRating">
+                            4.8
+                        </strong>
+
+                        <span>
+                            <i class="fa-solid fa-star"></i>
+                            Rating
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            12+
+                        </strong>
+
+                        <span>
+                            Years Experience
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            245+
+                        </strong>
+
+                        <span>
+                            Consultations
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT -->
+
+        <div class="profile-book-card">
+
+            <span class="consult-label">
+                Consultation Fee
+            </span>
+
+
+            <h2 id="doctorFee">
+                ₹499
+            </h2>
+
+
+            <p>
+
+                <i class="fa-solid fa-video"></i>
+
+                Online Consultation
+
+            </p>
+
+
+            <p>
+
+                <i class="fa-solid fa-clock"></i>
+
+                Approx. 15–30 minutes
+
+            </p>
+
+
+            <button
+                class="appointment-btn"
+                onclick="goToAppointment()"
+            >
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+                Book Appointment
+
+            </button>
+
+
+            <small>
+
+                Secure &amp; confidential consultation
+
+            </small>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= CONTENT GRID ================= -->
+
+    <section class="profile-content">
+
+
+        <!-- LEFT CONTENT -->
+
+        <div class="profile-details">
+
+
+            <!-- ABOUT -->
+
+            <div class="detail-card">
+
+                <h2>
+
+                    <i class="fa-solid fa-user-doctor"></i>
+
+                    About Doctor
+
+                </h2>
+
+
+                <p id="doctorAbout">
+
+                    Dr. Rahul Sharma is an experienced
+                    General Physician with expertise in
+                    preventive healthcare, common illnesses,
+                    lifestyle-related conditions and general
+                    medical consultation.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- SPECIALIZATION -->
+
+            <div class="detail-card">
+
+                <h2>
+
+                    <i class="fa-solid fa-stethoscope"></i>
+
+                    Specializations
+
+                </h2>
+
+
+                <div
+                    class="specialization-tags"
+                    id="specializationTags"
+                >
+
+                    <span>
+                        General Medicine
+                    </span>
+
+                    <span>
+                        Preventive Care
+                    </span>
+
+                    <span>
+                        Lifestyle Disorders
+                    </span>
+
+                    <span>
+                        Primary Healthcare
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- EDUCATION -->
+
+            <div class="detail-card">
+
+                <h2>
+
+                    <i class="fa-solid fa-graduation-cap"></i>
+
+                    Education &amp; Qualifications
+
+                </h2>
+
+
+                <div class="education-item">
+
+                    <div class="education-icon">
+
+                        <i class="fa-solid fa-graduation-cap"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            MD - General Medicine
+                        </strong>
+
+                        <p>
+                            Medical University
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="education-item">
+
+                    <div class="education-icon">
+
+                        <i class="fa-solid fa-user-doctor"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            MBBS
+                        </strong>
+
+                        <p>
+                            Medical College
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- EXPERIENCE -->
+
+            <div class="detail-card">
+
+                <h2>
+
+                    <i class="fa-solid fa-briefcase-medical"></i>
+
+                    Experience
+
+                </h2>
+
+
+                <div class="experience-row">
+
+                    <div class="experience-number">
+                        12+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Years of Medical Experience
+                        </strong>
+
+                        <p>
+                            Providing consultation and
+                            primary healthcare services.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- REVIEWS -->
+
+            <div class="detail-card">
+
+                <div class="review-heading">
+
+                    <h2>
+
+                        <i class="fa-solid fa-star"></i>
+
+                        Patient Reviews
+
+                    </h2>
+
+
+                    <div class="overall-rating">
+
+                        <strong>
+                            4.8
+                        </strong>
+
+                        <span>
+                            ★★★★★
+                        </span>
+
+                        <small>
+                            Based on 245 reviews
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="review">
+
+                    <div class="review-user">
+
+                        <div class="review-avatar">
+                            A
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Ankit
+                            </strong>
+
+                            <small>
+                                Verified consultation
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="review-stars">
+                        ★★★★★
+                    </div>
+
+
+                    <p>
+                        Very helpful consultation.
+                        The doctor explained everything
+                        clearly.
+                    </p>
+
+                </div>
+
+
+
+                <div class="review">
+
+                    <div class="review-user">
+
+                        <div class="review-avatar">
+                            S
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Sneha
+                            </strong>
+
+                            <small>
+                                Verified consultation
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="review-stars">
+                        ★★★★★
+                    </div>
+
+
+                    <p>
+                        Professional and easy to
+                        communicate with.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RIGHT SIDEBAR -->
+
+        <aside class="profile-sidebar">
+
+
+            <!-- AVAILABILITY -->
+
+            <div class="availability-card">
+
+                <h3>
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    Availability
+
+                </h3>
+
+
+                <div class="availability-status">
+
+                    <span class="status-dot"></span>
+
+                    Available Today
+
+                </div>
+
+
+                <div class="time-slot">
+
+                    <span>
+                        Today
+                    </span>
+
+                    <strong>
+                        10:00 AM – 2:00 PM
+                    </strong>
+
+                </div>
+
+
+                <div class="time-slot">
+
+                    <span>
+                        Evening
+                    </span>
+
+                    <strong>
+                        5:00 PM – 8:00 PM
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CONSULTATION -->
+
+            <div class="consultation-card">
+
+                <h3>
+                    Consultation Options
+                </h3>
+
+
+                <div class="consult-option">
+
+                    <i class="fa-solid fa-video"></i>
+
+                    <div>
+
+                        <strong>
+                            Video Consultation
+                        </strong>
+
+                        <span>
+                            Talk to doctor online
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="consult-option">
+
+                    <i class="fa-solid fa-phone"></i>
+
+                    <div>
+
+                        <strong>
+                            Audio Consultation
+                        </strong>
+
+                        <span>
+                            Voice consultation
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SAFETY -->
+
+            <div class="safety-card">
+
+                <i class="fa-solid fa-shield-heart"></i>
+
+                <div>
+
+                    <strong>
+                        Your Privacy Matters
+                    </strong>
+
+                    <p>
+                        Your consultation information
+                        is kept private and secure.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+    </section>
+
+</main>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="doctor-footer">
+
+    <div>
+
+        <h3>
+
+            <i class="fa-solid fa-heart-pulse"></i>
+
+            HealthKart
+
+        </h3>
+
+        <p>
+            Making healthcare simpler and more accessible.
+        </p>
+
+    </div>
+
+
+    <p>
+        © 2026 HealthKart. All rights reserved.
+    </p>
+
+</footer>
+
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="../js/doctor-profile.js"></script>
+<script type="module" src="../js/nav-auth.js"></script>
+</body>
+
+</html>

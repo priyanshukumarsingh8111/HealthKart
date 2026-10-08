@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HealthKart - Healthcare Made Simple</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            <i class="fa-solid fa-heart-pulse"></i>
+            <span>Health<span>Kart</span></span>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="pages/search.html">Medicines</a>
+            <a href="pages/compare.html">Compare</a>
+            <a href="pages/doctors.html">Doctors</a>
+            <a href="pages/my-health.html">My Health</a>
+        </nav>
+
+        <div class="nav-actions">
+            <a href="pages/cart.html" aria-label="Cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span id="cartCount">0</span>
+            </a>
+
+            <a href="pages/login.html" class="login-btn">
+                Login
+            </a>
+        </div>
+
+    </header>
+
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                <i class="fa-solid fa-shield-heart"></i>
+                Trusted Healthcare Platform
+            </div>
+
+            <h1>
+                Healthcare Made
+                <span>Simple & Affordable</span>
+            </h1>
+
+            <p>
+                Search medicines, compare prices, consult doctors
+                and manage your health — all in one place.
+            </p>
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input type="text" id="homeSearch" placeholder="Search medicines, products or doctors...">
+
+                <a href="pages/search.html" class="search-btn" id="homeSearchBtn">
+                    Search
+                </a>
+
+            </div>
+
+            <div class="quick-links">
+
+                <span>Popular:</span>
+
+                <a href="pages/search.html">Paracetamol</a>
+                <a href="pages/search.html">Vitamin D</a>
+                <a href="pages/search.html">BP Monitor</a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="services">
+
+        <div class="section-heading">
+            <p>Everything you need</p>
+            <h2>Your Health, Our Priority</h2>
+        </div>
+
+        <div class="service-grid">
+
+            <!-- MEDICINES -->
+            <a href="pages/search.html" class="service-card">
+
+                <div class="service-icon">
+                    <i class="fa-solid fa-pills"></i>
+                </div>
+
+                <h3>Medicines</h3>
+
+                <p>
+                    Find medicines and healthcare products
+                    at competitive prices.
+                </p>
+
+                <span>
+                    Explore Medicines
+                    <i class="fa-solid fa-arrow-right"></i>
+                </span>
+
+            </a>
+
+
+            <!-- COMPARE PRICES -->
+            <a href="pages/compare.html" class="service-card">
+
+                <div class="service-icon">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                </div>
+
+                <h3>Compare Prices</h3>
+
+                <p>
+                    Compare prices from multiple providers
+                    before buying.
+                </p>
+
+                <span>
+                    Compare Now
+                    <i class="fa-solid fa-arrow-right"></i>
+                </span>
+
+            </a>
+
+
+            <!-- CONSULT DOCTORS -->
+            <a href="pages/doctors.html" class="service-card">
+
+                <div class="service-icon">
+                    <i class="fa-solid fa-user-doctor"></i>
+                </div>
+
+                <h3>Consult Doctors</h3>
+
+                <p>
+                    Discover doctors and book healthcare
+                    consultations.
+                </p>
+
+                <span>
+                    Find Doctors
+                    <i class="fa-solid fa-arrow-right"></i>
+                </span>
+
+            </a>
+
+
+            <!-- MY HEALTH -->
+            <a href="pages/my-health.html" class="service-card">
+
+                <div class="service-icon">
+                    <i class="fa-solid fa-notes-medical"></i>
+                </div>
+
+                <h3>My Health</h3>
+
+                <p>
+                    Manage prescriptions, reminders and
+                    health records.
+                </p>
+
+                <span>
+                    Manage Health
+                    <i class="fa-solid fa-arrow-right"></i>
+                </span>
+
+            </a>
+
+        </div>
+    </section>
+
+
+    <section class="features">
+
+        <div class="feature">
+
+            <i class="fa-solid fa-truck-fast"></i>
+
+            <div>
+                <h3>Fast Delivery</h3>
+                <p>Reliable healthcare delivery</p>
+            </div>
+
+        </div>
+
+
+        <div class="feature">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            <div>
+                <h3>Secure & Trusted</h3>
+                <p>Your information stays protected</p>
+            </div>
+
+        </div>
+
+
+        <div class="feature">
+
+            <i class="fa-solid fa-indian-rupee-sign"></i>
+
+            <div>
+                <h3>Compare Prices</h3>
+                <p>Find better deals easily</p>
+            </div>
+
+        </div>
+
+
+        <div class="feature">
+
+            <i class="fa-solid fa-headset"></i>
+
+            <div>
+                <h3>Healthcare Support</h3>
+                <p>Help when you need it</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        <div class="footer-logo">
+            <i class="fa-solid fa-heart-pulse"></i>
+            HealthKart
+        </div>
+
+        <p>
+            Your trusted platform for smarter healthcare decisions.
+        </p>
+
+        <p class="copyright">
+            © 2026 HealthKart. All rights reserved.
+        </p>
+
+    </footer>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/main.js"></script>
+    <script type="module" src="js/nav-auth.js"></script>
+</body>
+
+</html>

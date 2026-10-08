@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>My Cart | HealthKart</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link rel="stylesheet" href="../css/cart.css">
+
+</head>
+
+<body>
+
+
+<header class="navbar">
+
+    <a href="../index.html" class="logo">
+
+        <i class="fa-solid fa-heart-pulse"></i>
+
+        <span>
+            Health<span>Kart</span>
+        </span>
+
+    </a>
+
+
+    <nav class="nav-links">
+
+        <a href="../index.html">
+            Home
+        </a>
+
+        <a href="search.html">
+            Medicines
+        </a>
+
+        <a href="compare.html">
+            Compare
+        </a>
+
+        <a href="doctors.html">
+            Doctors
+        </a>
+
+        <a href="my-health.html">
+            My Health
+        </a>
+
+    </nav>
+
+
+    <div class="nav-actions">
+
+        <a
+            href="cart.html"
+            class="cart-icon">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            <span id="cartCount">
+                0
+            </span>
+
+        </a>
+
+        <a
+            href="#"
+            class="login-button">
+
+            Login
+
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<main class="cart-page">
+
+
+    <div class="cart-heading">
+
+        <p>
+            SHOPPING CART
+        </p>
+
+        <h1>
+            My Cart
+        </h1>
+
+    </div>
+
+
+    <section class="cart-layout">
+
+
+        <!-- CART ITEMS -->
+
+        <div class="cart-items-section">
+
+            <div
+                id="cartItems"
+                class="cart-items">
+
+            </div>
+
+
+            <div
+                id="emptyCart"
+                class="empty-cart"
+                style="display:none;">
+
+                <i class="fa-solid fa-cart-shopping"></i>
+
+                <h2>
+                    Your cart is empty
+                </h2>
+
+                <p>
+                    Add healthcare products to continue.
+                </p>
+
+                <a href="search.html">
+                    Browse Products
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- SUMMARY -->
+
+        <aside class="cart-summary">
+
+            <h2>
+                Order Summary
+            </h2>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Subtotal
+                </span>
+
+                <strong id="subtotal">
+                    ₹0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Delivery
+                </span>
+
+                <strong id="delivery">
+                    ₹0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Discount
+                </span>
+
+                <strong class="discount-text">
+                    - ₹0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-divider"></div>
+
+
+            <div class="total-row">
+
+                <span>
+                    Total
+                </span>
+
+                <strong id="total">
+                    ₹0
+                </strong>
+
+            </div>
+
+
+            <button
+                class="checkout-button"
+                onclick="goToCheckout()">
+
+                Proceed to Checkout
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+
+            <div class="secure-checkout">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                Secure & encrypted checkout
+
+            </div>
+
+        </aside>
+
+    </section>
+
+</main>
+
+
+
+<footer>
+
+    <div class="footer-bottom">
+
+        © 2026 HealthKart.
+        All rights reserved.
+
+    </div>
+
+</footer>
+
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="../js/cart.js"></script>
+<script type="module" src="../js/nav-auth.js"></script>
+</body>
+
+</html>

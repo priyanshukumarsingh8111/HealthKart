@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Health | HealthKart</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Inter", sans-serif;
+            background: #f5faf8;
+            color: #17231f;
+        }
+
+        .health-page {
+            max-width: 1200px;
+            margin: auto;
+            padding: 35px 20px 60px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #687570;
+            margin-bottom: 25px;
+        }
+
+        .breadcrumb a {
+            color: #0b9f6e;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .hero {
+            background: linear-gradient(
+                135deg,
+                #e9faf3,
+                #ffffff
+            );
+
+            border: 1px solid #dcece5;
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .hero-content h1 {
+            margin: 0 0 10px;
+            font-size: 30px;
+        }
+
+        .hero-content p {
+            margin: 0;
+            color: #66736e;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .hero-icon {
+            width: 85px;
+            height: 85px;
+            border-radius: 22px;
+            background: #d9f5e9;
+            color: #0b9f6e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 38px;
+        }
+
+        .profile-card {
+            background: white;
+            border: 1px solid #e2ece8;
+            border-radius: 18px;
+            padding: 22px;
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            box-shadow: 0 7px 22px rgba(15, 74, 54, 0.05);
+        }
+
+        .profile-avatar {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: #e4f7ef;
+            color: #0b9f6e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-info h2 {
+            margin: 0 0 5px;
+            font-size: 18px;
+        }
+
+        .profile-info p {
+            margin: 0;
+            color: #74807b;
+            font-size: 13px;
+        }
+
+        .profile-link {
+            text-decoration: none;
+            color: #0b9f6e;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .section-heading {
+            margin-bottom: 16px;
+        }
+
+        .section-heading h2 {
+            margin: 0 0 5px;
+            font-size: 21px;
+        }
+
+        .section-heading p {
+            margin: 0;
+            color: #77837e;
+            font-size: 13px;
+        }
+
+        .health-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .health-card {
+            background: white;
+            border: 1px solid #e2ece8;
+            border-radius: 17px;
+            padding: 22px;
+            text-decoration: none;
+            color: inherit;
+            transition: 0.2s ease;
+            box-shadow: 0 7px 20px rgba(15, 74, 54, 0.04);
+        }
+
+        .health-card:hover {
+            transform: translateY(-3px);
+            border-color: #bfe5d6;
+            box-shadow: 0 12px 25px rgba(15, 74, 54, 0.08);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 13px;
+            background: #e7f8f1;
+            color: #0b9f6e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+            margin-bottom: 17px;
+        }
+
+        .health-card h3 {
+            margin: 0 0 8px;
+            font-size: 16px;
+        }
+
+        .health-card p {
+            margin: 0 0 16px;
+            color: #707c77;
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+        .card-link {
+            color: #0b9f6e;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .card-count {
+            display: block;
+            margin-top: 4px;
+            color: #7a8580;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .quick-section {
+            margin-top: 32px;
+        }
+
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .quick-card {
+            background: white;
+            border: 1px solid #e2ece8;
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .quick-card i {
+            color: #0b9f6e;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .quick-card h3 {
+            margin: 0 0 7px;
+            font-size: 15px;
+        }
+
+        .quick-card p {
+            margin: 0;
+            color: #75817c;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .logout-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .logout-btn {
+            border: 1px solid #f0caca;
+            background: #fff5f5;
+            color: #d13c3c;
+            padding: 11px 20px;
+            border-radius: 9px;
+            font-family: inherit;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background: #ffeded;
+        }
+
+        @media (max-width: 850px) {
+
+            .health-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .quick-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .health-page {
+                padding: 25px 14px 45px;
+            }
+
+            .hero {
+                padding: 22px;
+            }
+
+            .hero-content h1 {
+                font-size: 24px;
+            }
+
+            .hero-icon {
+                width: 65px;
+                height: 65px;
+                font-size: 28px;
+            }
+
+            .profile-card {
+                align-items: flex-start;
+            }
+
+            .health-grid,
+            .quick-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body data-require-auth>
+
+    <header class="navbar">
+
+        <a href="../index.html" class="logo">
+            <i class="fa-solid fa-heart-pulse"></i>
+            <span>Health<span>Kart</span></span>
+        </a>
+
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="search.html">Medicines</a>
+            <a href="compare.html">Compare</a>
+            <a href="doctors.html">Doctors</a>
+            <a href="my-health.html" style="color:#0b9f6e">My Health</a>
+        </nav>
+
+        <div class="nav-actions">
+            <a href="cart.html" class="cart-icon" aria-label="Cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span id="cartCount">0</span>
+            </a>
+        </div>
+
+    </header>
+
+
+    <main class="health-page">
+
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+
+            <a href="../index.html">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
+
+            <i class="fa-solid fa-chevron-right"></i>
+
+            <span>My Health</span>
+
+        </div>
+
+
+        <!-- Hero -->
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <h1>My Health</h1>
+
+                <p>
+                    Manage your health records, prescriptions,
+                    appointments, reminders and orders in one place.
+                </p>
+
+            </div>
+
+            <div class="hero-icon">
+                <i class="fa-solid fa-heart-pulse"></i>
+            </div>
+
+        </section>
+
+
+        <!-- Profile -->
+        <section class="profile-card">
+
+            <div class="profile-avatar">
+                <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div class="profile-info">
+
+                <h2 id="profileName">
+                    Welcome to HealthKart
+                </h2>
+
+                <p id="profileEmail">
+                    Manage your personal health information securely.
+                </p>
+
+            </div>
+
+            <a
+                href="profile.html"
+                class="profile-link"
+            >
+                View Profile
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </section>
+
+
+        <!-- Main Health Section -->
+        <div class="section-heading">
+
+            <h2>Health Management</h2>
+
+            <p>
+                Access and manage your important health information.
+            </p>
+
+        </div>
+
+
+        <section class="health-grid">
+
+            <!-- Prescriptions -->
+            <a
+                href="prescriptions.html"
+                class="health-card"
+            >
+
+                <div class="card-icon">
+                    <i class="fa-solid fa-prescription-bottle-medical"></i>
+                </div>
+
+                <h3>Prescriptions</h3>
+
+                <span class="card-count" id="prescriptionsCount">0 saved</span>
+
+                <p>
+                    Save and manage your prescriptions
+                    and medicine information.
+                </p>
+
+                <div class="card-link">
+                    View Prescriptions
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+
+            </a>
+
+
+            <!-- Health Records -->
+            <a
+                href="health-records.html"
+                class="health-card"
+            >
+
+                <div class="card-icon">
+                    <i class="fa-solid fa-file-medical"></i>
+                </div>
+
+                <h3>Health Records</h3>
+
+                <span class="card-count" id="healthRecordsCount">0 records</span>
+
+                <p>
+                    Store and manage your medical reports,
+                    test results and health documents.
+                </p>
+
+                <div class="card-link">
+                    View Health Records
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+
+            </a>
+
+
+            <!-- Appointments -->
+            <a
+                href="my-appointments.html"
+                class="health-card"
+            >
+
+                <div class="card-icon">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+
+                <h3>Appointments</h3>
+
+                <span class="card-count" id="appointmentsCount">0 appointments</span>
+
+                <p>
+                    View and manage your doctor
+                    consultation appointments.
+                </p>
+
+                <div class="card-link">
+                    View Appointments
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+
+            </a>
+
+
+            <!-- Reminders -->
+            <a
+                href="reminders.html"
+                class="health-card"
+            >
+
+                <div class="card-icon">
+                    <i class="fa-solid fa-bell"></i>
+                </div>
+
+                <h3>Medicine & Yoga Reminders</h3>
+
+                <span class="card-count" id="remindersCount">0 reminders</span>
+
+                <p>
+                    Meal-timed medicine eating schedules and daily yoga & pranayama routines.
+                </p>
+
+                <div class="card-link">
+                    Manage Reminders
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+
+            </a>
+
+            <!-- AI Health Copilot Card -->
+            <div
+                class="health-card"
+                onclick="window.openAIAgent ? window.openAIAgent() : null"
+                style="cursor:pointer; border:1px solid #c7f0db; background: linear-gradient(135deg, #ffffff, #f0fdf7);"
+            >
+                <div class="card-icon" style="background:#e4f7ef; color:#0b9f6e;">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <h3>AI Health Copilot <span style="font-size:10px; background:#0b9f6e; color:white; padding:2px 6px; border-radius:10px; margin-left:4px;">LIVE</span></h3>
+                <span class="card-count" style="color:#0b9f6e; font-weight:700;">Real-Time Voice & Audio Reminders</span>
+                <p>
+                    Instant voice assistant for meal-time medicine alerts, yoga therapy, and doctor prescription sync.
+                </p>
+                <div class="card-link">
+                    Launch AI Copilot
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+
+
+            <!-- Orders -->
+            <a
+                href="orders.html"
+                class="health-card"
+            >
+
+                <div class="card-icon">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+
+                <h3>My Orders</h3>
+
+                <span class="card-count" id="ordersCount">0 orders</span>
+
+                <p>
+                    Track your medicine and healthcare
+                    product orders.
+                </p>
+
+                <div class="card-link">
+                    View Orders
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+
+            </a>
+
+
+            <!-- Wishlist -->
+            <a
+                href="wishlist.html"
+                class="health-card"
+            >
+
+                <div class="card-icon">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+
+                <h3>Wishlist</h3>
+
+                <span class="card-count" id="wishlistCount">0 saved</span>
+
+                <p>
+                    View healthcare products saved
+                    to your wishlist.
+                </p>
+
+                <div class="card-link">
+                    View Wishlist
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+
+            </a>
+
+        </section>
+
+
+        <!-- Quick Access -->
+        <section class="quick-section">
+
+            <div class="section-heading">
+
+                <h2>Quick Health Tips</h2>
+
+                <p>
+                    Simple habits for maintaining a healthy lifestyle.
+                </p>
+
+            </div>
+
+
+            <div class="quick-grid">
+
+                <div class="quick-card">
+
+                    <i class="fa-solid fa-droplet"></i>
+
+                    <h3>Stay Hydrated</h3>
+
+                    <p>
+                        Drink enough water throughout
+                        the day to stay hydrated.
+                    </p>
+
+                </div>
+
+
+                <div class="quick-card">
+
+                    <i class="fa-solid fa-person-running"></i>
+
+                    <h3>Stay Active</h3>
+
+                    <p>
+                        Include regular physical activity
+                        in your daily routine.
+                    </p>
+
+                </div>
+
+
+                <div class="quick-card">
+
+                    <i class="fa-solid fa-moon"></i>
+
+                    <h3>Sleep Well</h3>
+
+                    <p>
+                        Maintain a regular sleep schedule
+                        and get adequate rest.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Logout -->
+        <div class="logout-section">
+
+            <button
+                class="logout-btn"
+                id="logoutBtn"
+                type="button"
+            >
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- My Health JavaScript -->
+    <script type="module">
+
+        import {
+            auth
+        } from "../js/firebase-config.js";
+
+        import {
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+        const profileName =
+            document.getElementById("profileName");
+
+        const profileEmail =
+            document.getElementById("profileEmail");
+
+        const logoutBtn =
+            document.getElementById("logoutBtn");
+
+
+        onAuthStateChanged(auth, function(user) {
+
+            if (user) {
+
+                profileName.textContent =
+                    user.displayName ||
+                    "HealthKart User";
+
+                profileEmail.textContent =
+                    user.email ||
+                    "Account connected";
+
+            } else {
+
+                profileName.textContent =
+                    "Welcome to HealthKart";
+
+                profileEmail.textContent =
+                    "Manage your personal health information securely.";
+            }
+
+        });
+
+
+
+        function getLocalStorageArray(key) {
+            try {
+                const data = JSON.parse(localStorage.getItem(key));
+                return Array.isArray(data) ? data : [];
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function updateHealthCounts() {
+            let healthRecords = getLocalStorageArray("healthkartHealthRecords");
+            let prescriptions = getLocalStorageArray("healthkartPrescriptions");
+            let appointments = getLocalStorageArray("healthkartAppointments");
+            let reminders = getLocalStorageArray("healthkartMedicineReminders");
+            let orders = getLocalStorageArray("healthkartOrders");
+            let wishlist = getLocalStorageArray("healthkartWishlist");
+
+            const healthRecordsCount = document.getElementById("healthRecordsCount");
+            const prescriptionsCount = document.getElementById("prescriptionsCount");
+            const appointmentsCount = document.getElementById("appointmentsCount");
+            const remindersCount = document.getElementById("remindersCount");
+            const ordersCount = document.getElementById("ordersCount");
+            const wishlistCount = document.getElementById("wishlistCount");
+
+            function updateUI() {
+                if (healthRecordsCount) healthRecordsCount.textContent = `${healthRecords.length} ${healthRecords.length === 1 ? 'record' : 'records'}`;
+                if (prescriptionsCount) prescriptionsCount.textContent = `${prescriptions.length} ${prescriptions.length === 1 ? 'prescription' : 'prescriptions'}`;
+                if (appointmentsCount) appointmentsCount.textContent = `${appointments.length} ${appointments.length === 1 ? 'appointment' : 'appointments'}`;
+                if (remindersCount) remindersCount.textContent = `${reminders.length} ${reminders.length === 1 ? 'reminder' : 'reminders'}`;
+                if (ordersCount) ordersCount.textContent = `${orders.length} ${orders.length === 1 ? 'order' : 'orders'}`;
+                if (wishlistCount) wishlistCount.textContent = `${wishlist.length} ${wishlist.length === 1 ? 'item' : 'items'}`;
+            }
+
+            updateUI();
+
+            // Sync with backend database in real time
+            Promise.allSettled([
+                fetch('/api/prescriptions').then(r => r.json()),
+                fetch('/api/reminders').then(r => r.json()),
+                fetch('/api/appointments/my').then(r => r.json())
+            ]).then(([presRes, remRes, apptRes]) => {
+                if (presRes.status === 'fulfilled' && presRes.value?.success && presRes.value?.prescriptions) {
+                    prescriptions = presRes.value.prescriptions;
+                }
+                if (remRes.status === 'fulfilled' && remRes.value?.success && remRes.value?.reminders) {
+                    reminders = remRes.value.reminders;
+                }
+                if (apptRes.status === 'fulfilled' && apptRes.value?.success && apptRes.value?.appointments) {
+                    appointments = apptRes.value.appointments;
+                }
+                updateUI();
+            }).catch(() => {});
+
+            if (wishlistCount) {
+                wishlistCount.textContent =
+                    wishlist.length +
+                    (wishlist.length === 1 ? " saved" : " saved");
+            }
+        }
+
+        updateHealthCounts();
+
+        window.addEventListener("storage", updateHealthCounts);
+
+        logoutBtn.addEventListener(
+            "click",
+            async function() {
+
+                try {
+
+                    await signOut(auth);
+
+                    window.location.href =
+                        "login.html";
+
+                } catch (error) {
+
+                    console.error(error);
+
+                    alert(
+                        "Logout failed. Please try again."
+                    );
+
+                }
+
+            }
+        );
+
+    </script>
+
+<script src="/socket.io/socket.io.js"></script>
+<script type="module" src="../js/nav-auth.js"></script>
+</body>
+</html>

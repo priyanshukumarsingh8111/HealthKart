@@ -1,0 +1,80 @@
+/* HealthKart shared UI: toasts + confirm dialog */
+
+#hk-toasts {
+    position: fixed;
+    top: 84px;
+    right: 18px;
+    z-index: 5000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: min(380px, calc(100vw - 36px));
+    pointer-events: none;
+}
+
+.hk-toast {
+    pointer-events: auto;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #fff;
+    border: 1px solid #e1ebe6;
+    border-left: 4px solid #0b9f6e;
+    border-radius: 10px;
+    padding: 12px 14px;
+    box-shadow: 0 10px 30px rgba(20, 50, 40, 0.14);
+    font-size: 13px;
+    line-height: 1.5;
+    color: #26332d;
+    animation: hkToastIn 0.2s ease;
+}
+
+.hk-toast > i { margin-top: 2px; color: #0b9f6e; }
+.hk-toast > span { flex: 1; }
+.hk-toast > button {
+    border: none; background: none; cursor: pointer;
+    font-size: 18px; line-height: 1; color: #8a958f;
+}
+.hk-toast-error { border-left-color: #d9534f; }
+.hk-toast-error > i { color: #d9534f; }
+.hk-toast-warning { border-left-color: #e0a100; }
+.hk-toast-warning > i { color: #e0a100; }
+.hk-toast-info { border-left-color: #3d6fb6; }
+.hk-toast-info > i { color: #3d6fb6; }
+.hk-toast-out { opacity: 0; transform: translateX(12px); transition: 0.2s ease; }
+
+@keyframes hkToastIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hk-dialog-overlay {
+    position: fixed; inset: 0; z-index: 6000;
+    background: rgba(15, 35, 28, 0.48);
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+}
+
+.hk-dialog {
+    width: 100%; max-width: 400px;
+    background: #fff; border-radius: 16px; padding: 24px;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
+}
+.hk-dialog h3 { font-size: 18px; color: #1e332b; margin-bottom: 8px; }
+.hk-dialog p { font-size: 14px; color: #68756e; line-height: 1.6; }
+.hk-dialog-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 22px; }
+
+.hk-btn {
+    border: 1px solid transparent; border-radius: 9px; padding: 10px 16px;
+    font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer;
+}
+.hk-btn-primary { background: #0b9f6e; color: #fff; }
+.hk-btn-primary:hover { background: #087e58; }
+.hk-btn-danger { background: #d9534f; color: #fff; }
+.hk-btn-danger:hover { background: #c14440; }
+.hk-btn-light { background: #fff; border-color: #dce6e1; color: #46534c; }
+.hk-btn-light:hover { background: #f4f8f6; }
+
+@media (max-width: 600px) {
+    #hk-toasts { top: 70px; right: 10px; left: 10px; width: auto; }
+}

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Orders - HealthKart</title>
+
+    <link rel="stylesheet" href="../css/orders.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body data-require-auth>
+
+    <!-- HEADER -->
+    <header class="orders-header">
+
+        <div class="header-inner">
+
+            <a href="my-health.html" class="logo">
+                <i class="fa-solid fa-heart-pulse"></i>
+                <span>Health<span>Kart</span></span>
+            </a>
+
+            <a href="my-health.html" class="back-link">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to My Health
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- MAIN -->
+    <main class="orders-container">
+
+        <!-- PAGE INTRO -->
+        <section class="page-intro">
+
+            <div>
+
+                <p class="label">MY HEALTH</p>
+
+                <h1>My Orders</h1>
+
+                <p>
+                    Track your medicines and healthcare product
+                    orders in one place.
+                </p>
+
+            </div>
+
+            <a href="search.html" class="shop-button">
+
+                <i class="fa-solid fa-cart-shopping"></i>
+
+                Continue Shopping
+
+            </a>
+
+        </section>
+
+
+        <!-- ORDER SUMMARY -->
+        <section class="order-summary">
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    <i class="fa-solid fa-box"></i>
+                </div>
+
+                <div>
+
+                    <span>Total Orders</span>
+
+                    <strong id="totalOrders">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    <i class="fa-solid fa-truck-fast"></i>
+                </div>
+
+                <div>
+
+                    <span>Active Orders</span>
+
+                    <strong id="activeOrders">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+
+                <div>
+
+                    <span>Delivered</span>
+
+                    <strong id="deliveredOrders">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ORDERS SECTION -->
+        <section class="orders-section">
+
+            <div class="section-title">
+
+                <div>
+
+                    <p class="label">ORDER HISTORY</p>
+
+                    <h2>Your Orders</h2>
+
+                    <p>
+                        View your recent medicine and healthcare
+                        product orders.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- EMPTY STATE -->
+            <div
+                class="empty-orders"
+                id="emptyOrders">
+
+                <div class="empty-icon">
+
+                    <i class="fa-solid fa-box-open"></i>
+
+                </div>
+
+                <h3>No orders yet</h3>
+
+                <p>
+                    You haven't placed any orders yet.
+                    Start shopping for medicines and healthcare
+                    products.
+                </p>
+
+                <a href="search.html">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    Browse Medicines
+
+                </a>
+
+            </div>
+
+
+            <!-- ORDER LIST -->
+            <div
+                class="orders-list"
+                id="ordersList">
+            </div>
+
+        </section>
+
+
+        <!-- INFORMATION BOX -->
+        <section class="orders-info">
+
+            <div class="info-icon">
+
+                <i class="fa-solid fa-shield-heart"></i>
+
+            </div>
+
+            <div>
+
+                <h3>Your orders are securely managed</h3>
+
+                <p>
+                    Order information is linked to your HealthKart
+                    account. Payment and delivery information will be
+                    securely handled when the backend is connected.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="module" src="../js/orders.js"></script>
+    <script type="module" src="../js/nav-auth.js"></script>
+</body>
+
+</html>

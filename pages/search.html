@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Search Medicines | HealthKart</title>
+
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- Search CSS -->
+    <link rel="stylesheet" href="../css/search.css">
+
+
+    <!-- =========================================
+         WISHLIST BUTTON CSS
+    ========================================== -->
+
+    <style>
+
+        .wishlist-btn {
+            width: 100%;
+            min-height: 42px;
+
+            margin-top: 10px;
+            padding: 10px 14px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 8px;
+
+            border: 1px solid #d9e5e0;
+            border-radius: 10px;
+
+            background: #ffffff;
+
+            color: #0b9f6e;
+
+            font-family: "Inter", sans-serif;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                background 0.2s ease,
+                border-color 0.2s ease,
+                color 0.2s ease,
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        .wishlist-btn i {
+            font-size: 15px;
+
+            transition:
+                transform 0.2s ease,
+                color 0.2s ease;
+        }
+
+
+        /* Hover */
+
+        .wishlist-btn:hover {
+
+            background: #ecfdf5;
+
+            border-color: #0b9f6e;
+
+            color: #07845b;
+
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 5px 14px rgba(11, 159, 110, 0.10);
+        }
+
+
+        .wishlist-btn:hover i {
+
+            transform: scale(1.15);
+
+        }
+
+
+        /* Click */
+
+        .wishlist-btn:active {
+
+            transform: scale(0.98);
+
+        }
+
+
+        /* =========================================
+           WISHLISTED STATE
+        ========================================== */
+
+        .wishlist-btn.wishlisted {
+
+            background: #ecfdf5;
+
+            border-color: #0b9f6e;
+
+            color: #07845b;
+        }
+
+
+        .wishlist-btn.wishlisted i {
+
+            color: #0b9f6e;
+
+        }
+
+
+        .wishlist-btn.wishlisted:hover {
+
+            background: #dff9ee;
+
+            border-color: #07845b;
+
+            color: #06714e;
+        }
+
+
+        /* =========================================
+           PRODUCT ACTION SPACING
+        ========================================== */
+
+        .product-card .add-cart {
+
+            margin-top: 10px;
+
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================== */
+
+        @media (max-width: 600px) {
+
+            .wishlist-btn {
+
+                min-height: 40px;
+
+                padding: 9px 12px;
+
+                font-size: 12px;
+
+            }
+
+            .wishlist-btn i {
+
+                font-size: 14px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+====================================================== -->
+
+<header class="navbar">
+
+
+    <!-- LOGO -->
+
+    <a href="../index.html" class="logo">
+
+        <i class="fa-solid fa-heart-pulse"></i>
+
+        <span>
+            Health<span>Kart</span>
+        </span>
+
+    </a>
+
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="nav-links">
+
+        <a href="../index.html">
+            Home
+        </a>
+
+
+        <a
+            href="search.html"
+            class="active">
+
+            Medicines
+
+        </a>
+
+
+        <a href="compare.html">
+            Compare
+        </a>
+
+
+        <a href="doctors.html">
+            Doctors
+        </a>
+
+
+        <a href="my-health.html">
+            My Health
+        </a>
+
+    </nav>
+
+
+
+    <!-- NAV ACTIONS -->
+
+    <div class="nav-actions">
+
+
+        <!-- WISHLIST -->
+
+        <a
+            href="wishlist.html"
+            class="wishlist-nav-icon"
+            title="My Wishlist">
+
+            <i class="fa-regular fa-heart"></i>
+
+        </a>
+
+
+
+        <!-- CART -->
+
+        <a
+            href="cart.html"
+            class="cart-icon">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            <span id="cartCount">
+                0
+            </span>
+
+        </a>
+
+
+
+        <!-- LOGIN -->
+
+        <a
+            href="login.html"
+            class="login-button">
+
+            Login
+
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN SEARCH PAGE
+====================================================== -->
+
+<main class="search-page">
+
+
+    <!-- =================================================
+         SEARCH HEADER
+    ================================================== -->
+
+    <section class="search-header">
+
+
+        <p>
+            HEALTHCARE PRODUCTS
+        </p>
+
+
+        <h1>
+            Find What You Need
+        </h1>
+
+
+
+        <!-- SEARCH BOX -->
+
+        <div class="search-large">
+
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+
+            <input
+                type="text"
+                id="productSearch"
+                placeholder="Search medicines, vitamins, healthcare products...">
+
+
+            <button
+                type="button"
+                onclick="searchProducts()">
+
+                Search
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         PRODUCTS AREA
+    ================================================== -->
+
+    <section class="products-area">
+
+
+        <!-- =================================================
+             FILTER SIDEBAR
+        ================================================== -->
+
+        <aside class="filters">
+
+
+            <div class="filter-header">
+
+                <h3>
+                    Filters
+                </h3>
+
+
+                <button
+                    type="button"
+                    onclick="clearFilters()">
+
+                    Clear
+
+                </button>
+
+            </div>
+
+
+
+            <!-- CATEGORY -->
+
+            <div class="filter-group">
+
+
+                <h4>
+                    Category
+                </h4>
+
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        value="Medicine">
+
+                    Medicines
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        value="Vitamin">
+
+                    Vitamins
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        value="Device">
+
+                    Healthcare Devices
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        value="Personal Care">
+
+                    Personal Care
+
+                </label>
+
+            </div>
+
+
+
+            <!-- AVAILABILITY -->
+
+            <div class="filter-group">
+
+
+                <h4>
+                    Availability
+                </h4>
+
+
+                <label>
+
+                    <input
+                        type="checkbox">
+
+                    In Stock
+
+                </label>
+
+            </div>
+
+
+
+            <!-- RATING -->
+
+            <div class="filter-group">
+
+
+                <h4>
+                    Rating
+                </h4>
+
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="rating">
+
+                    4★ & above
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="rating">
+
+                    3★ & above
+
+                </label>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- =================================================
+             PRODUCT SECTION
+        ================================================== -->
+
+        <div class="product-section">
+
+
+            <!-- PRODUCT TOP -->
+
+            <div class="product-top">
+
+
+                <div>
+
+                    <h2>
+                        Healthcare Products
+                    </h2>
+
+
+                    <p id="resultText">
+                        Showing popular products
+                    </p>
+
+                </div>
+
+
+
+                <!-- SORT -->
+
+                <select id="sortProducts">
+
+                    <option>
+                        Sort: Recommended
+                    </option>
+
+                    <option>
+                        Price: Low to High
+                    </option>
+
+                    <option>
+                        Price: High to Low
+                    </option>
+
+                    <option>
+                        Rating
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 PRODUCT GRID
+            ================================================== -->
+
+            <div
+                class="product-grid"
+                id="productGrid">
+
+
+
+                <!-- =================================================
+                     PRODUCT 1 - PARACETAMOL
+                ================================================== -->
+
+                <article
+                    class="product-card"
+                    data-name="Paracetamol 500mg"
+                    data-category="Medicine">
+
+
+                    <div class="discount">
+                        28% OFF
+                    </div>
+
+
+                    <div class="product-image">
+
+                        <i class="fa-solid fa-pills"></i>
+
+                    </div>
+
+
+                    <span class="category">
+                        Medicine
+                    </span>
+
+
+                    <h3>
+                        Paracetamol 500mg
+                    </h3>
+
+
+                    <p class="description">
+                        Fever and pain relief tablets
+                    </p>
+
+
+                    <div class="rating">
+
+                        ★ 4.7
+
+                        <span>
+                            (128 reviews)
+                        </span>
+
+                    </div>
+
+
+                    <div class="price">
+
+                        <strong>
+                            ₹25
+                        </strong>
+
+                        <del>
+                            ₹35
+                        </del>
+
+                    </div>
+
+
+                    <div class="stock">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        In Stock
+
+                    </div>
+
+
+
+                    <!-- WISHLIST -->
+
+                    <button
+                        type="button"
+                        class="wishlist-btn"
+                        onclick="addToWishlist(
+                            'paracetamol-500',
+                            'Paracetamol 500mg',
+                            'Fever and pain relief tablets',
+                            25
+                        )">
+
+                        <i class="fa-regular fa-heart"></i>
+
+                        Wishlist
+
+                    </button>
+
+
+
+                    <!-- CART -->
+
+                    <button
+                        type="button"
+                        class="add-cart"
+                        onclick="addToCart(
+                            'Paracetamol 500mg',
+                            25
+                        )">
+
+                        <i class="fa-solid fa-cart-plus"></i>
+
+                        Add to Cart
+
+                    </button>
+
+
+
+                    <!-- DETAILS -->
+
+                    <a
+                        href="product-details.html"
+                        class="view-product">
+
+                        View Details
+
+                    </a>
+
+                </article>
+
+
+
+                <!-- =================================================
+                     PRODUCT 2 - VITAMIN D3
+                ================================================== -->
+
+                <article
+                    class="product-card"
+                    data-name="Vitamin D3 1000 IU"
+                    data-category="Vitamin">
+
+
+                    <div class="discount">
+                        20% OFF
+                    </div>
+
+
+                    <div class="product-image">
+
+                        <i class="fa-solid fa-capsules"></i>
+
+                    </div>
+
+
+                    <span class="category">
+                        Vitamin
+                    </span>
+
+
+                    <h3>
+                        Vitamin D3 1000 IU
+                    </h3>
+
+
+                    <p class="description">
+                        Daily vitamin D supplement
+                    </p>
+
+
+                    <div class="rating">
+
+                        ★ 4.6
+
+                        <span>
+                            (94 reviews)
+                        </span>
+
+                    </div>
+
+
+                    <div class="price">
+
+                        <strong>
+                            ₹120
+                        </strong>
+
+                        <del>
+                            ₹150
+                        </del>
+
+                    </div>
+
+
+                    <div class="stock">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        In Stock
+
+                    </div>
+
+
+
+                    <!-- WISHLIST -->
+
+                    <button
+                        type="button"
+                        class="wishlist-btn"
+                        onclick="addToWishlist(
+                            'vitamin-d3-1000',
+                            'Vitamin D3 1000 IU',
+                            'Daily vitamin D supplement',
+                            120
+                        )">
+
+                        <i class="fa-regular fa-heart"></i>
+
+                        Wishlist
+
+                    </button>
+
+
+
+                    <!-- CART -->
+
+                    <button
+                        type="button"
+                        class="add-cart"
+                        onclick="addToCart(
+                            'Vitamin D3 1000 IU',
+                            120
+                        )">
+
+                        <i class="fa-solid fa-cart-plus"></i>
+
+                        Add to Cart
+
+                    </button>
+
+
+
+                    <!-- DETAILS -->
+
+                    <a
+                        href="product-details.html"
+                        class="view-product">
+
+                        View Details
+
+                    </a>
+
+                </article>
+
+
+
+                <!-- =================================================
+                     PRODUCT 3 - BP MONITOR
+                ================================================== -->
+
+                <article
+                    class="product-card"
+                    data-name="Digital BP Monitor"
+                    data-category="Device">
+
+
+                    <div class="discount">
+                        15% OFF
+                    </div>
+
+
+                    <div class="product-image">
+
+                        <i class="fa-solid fa-heart-pulse"></i>
+
+                    </div>
+
+
+                    <span class="category">
+                        Device
+                    </span>
+
+
+                    <h3>
+                        Digital BP Monitor
+                    </h3>
+
+
+                    <p class="description">
+                        Automatic blood pressure monitor
+                    </p>
+
+
+                    <div class="rating">
+
+                        ★ 4.5
+
+                        <span>
+                            (76 reviews)
+                        </span>
+
+                    </div>
+
+
+                    <div class="price">
+
+                        <strong>
+                            ₹1,699
+                        </strong>
+
+                        <del>
+                            ₹1,999
+                        </del>
+
+                    </div>
+
+
+                    <div class="stock">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        In Stock
+
+                    </div>
+
+
+
+                    <!-- WISHLIST -->
+
+                    <button
+                        type="button"
+                        class="wishlist-btn"
+                        onclick="addToWishlist(
+                            'bp-monitor',
+                            'Digital BP Monitor',
+                            'Automatic blood pressure monitor',
+                            1699
+                        )">
+
+                        <i class="fa-regular fa-heart"></i>
+
+                        Wishlist
+
+                    </button>
+
+
+
+                    <!-- CART -->
+
+                    <button
+                        type="button"
+                        class="add-cart"
+                        onclick="addToCart(
+                            'Digital BP Monitor',
+                            1699
+                        )">
+
+                        <i class="fa-solid fa-cart-plus"></i>
+
+                        Add to Cart
+
+                    </button>
+
+
+
+                    <!-- DETAILS -->
+
+                    <a
+                        href="product-details.html"
+                        class="view-product">
+
+                        View Details
+
+                    </a>
+
+                </article>
+
+
+
+                <!-- =================================================
+                     PRODUCT 4 - FACE CLEANSER
+                ================================================== -->
+
+                <article
+                    class="product-card"
+                    data-name="Gentle Face Cleanser"
+                    data-category="Personal Care">
+
+
+                    <div class="discount">
+                        18% OFF
+                    </div>
+
+
+                    <div class="product-image">
+
+                        <i class="fa-solid fa-pump-soap"></i>
+
+                    </div>
+
+
+                    <span class="category">
+                        Personal Care
+                    </span>
+
+
+                    <h3>
+                        Gentle Face Cleanser
+                    </h3>
+
+
+                    <p class="description">
+                        Mild cleanser for daily use
+                    </p>
+
+
+                    <div class="rating">
+
+                        ★ 4.4
+
+                        <span>
+                            (63 reviews)
+                        </span>
+
+                    </div>
+
+
+                    <div class="price">
+
+                        <strong>
+                            ₹249
+                        </strong>
+
+                        <del>
+                            ₹299
+                        </del>
+
+                    </div>
+
+
+                    <div class="stock">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        In Stock
+
+                    </div>
+
+
+
+                    <!-- WISHLIST -->
+
+                    <button
+                        type="button"
+                        class="wishlist-btn"
+                        onclick="addToWishlist(
+                            'face-cleanser',
+                            'Gentle Face Cleanser',
+                            'Mild cleanser for daily use',
+                            249
+                        )">
+
+                        <i class="fa-regular fa-heart"></i>
+
+                        Wishlist
+
+                    </button>
+
+
+
+                    <!-- CART -->
+
+                    <button
+                        type="button"
+                        class="add-cart"
+                        onclick="addToCart(
+                            'Gentle Face Cleanser',
+                            249
+                        )">
+
+                        <i class="fa-solid fa-cart-plus"></i>
+
+                        Add to Cart
+
+                    </button>
+
+
+
+                    <!-- DETAILS -->
+
+                    <a
+                        href="product-details.html"
+                        class="view-product">
+
+                        View Details
+
+                    </a>
+
+                </article>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script src="/socket.io/socket.io.js"></script>
+<!-- Search + Cart -->
+<script src="../js/search.js"></script>
+
+<!-- Wishlist -->
+<script src="../js/wishlist.js"></script>
+
+<script type="module" src="../js/nav-auth.js"></script>
+</body>
+
+</html>

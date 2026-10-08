@@ -1,0 +1,656 @@
+/* HealthKart shared auth navbar */
+
+.hk-auth {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.hk-login-btn {
+    display: inline-flex;
+    align-items: center;
+    background: #0b9f6e;
+    color: #fff !important;
+    padding: 9px 18px;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: 0.2s ease;
+    box-shadow: 0 4px 12px rgba(11, 159, 110, 0.25);
+}
+
+.hk-login-btn:hover {
+    background: #087e58;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(11, 159, 110, 0.35);
+}
+
+.hk-auth-skeleton {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(90deg, #edf2ef, #f6f9f7, #edf2ef);
+    background-size: 200% 100%;
+    animation: hkShimmer 1.2s infinite linear;
+}
+
+@keyframes hkShimmer {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
+}
+
+/* Notification Bell */
+.hk-notif-trigger {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid #d5e5df;
+    background: #f7faf8;
+    color: #2c4238;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s ease;
+}
+
+.hk-notif-trigger:hover,
+.hk-notif-trigger[aria-expanded="true"] {
+    background: #eaf6f1;
+    border-color: #0b9f6e;
+    color: #0b9f6e;
+}
+
+.hk-notif-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: #e53e3e;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    min-width: 17px;
+    height: 17px;
+    padding: 0 4px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #fff;
+    animation: hkPulse 2s infinite;
+}
+
+@keyframes hkPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Avatar Trigger */
+.hk-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 2px solid #bde2d5;
+    background: linear-gradient(135deg, #0b9f6e, #06724e);
+    color: #fff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s ease;
+    box-shadow: 0 3px 10px rgba(11, 159, 110, 0.2);
+}
+
+.hk-avatar:hover,
+.hk-avatar[aria-expanded="true"] {
+    border-color: #0b9f6e;
+    box-shadow: 0 0 0 3px rgba(11, 159, 110, 0.2);
+}
+
+/* Dropdown Menu */
+.hk-menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    width: 260px;
+    background: #fff;
+    border: 1px solid #e1ebe6;
+    border-radius: 14px;
+    box-shadow: 0 18px 45px rgba(20, 50, 40, 0.16);
+    padding: 8px;
+    z-index: 2500;
+    animation: hkDropdownSlide 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes hkDropdownSlide {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hk-menu[hidden] { display: none; }
+
+.hk-menu-head {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 10px 12px 12px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #edf1ef;
+    background: #fbfdfc;
+    border-radius: 8px;
+}
+
+.hk-menu-head strong {
+    font-size: 14px;
+    color: #1e332b;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.hk-menu-head span {
+    font-size: 12px;
+    color: #7a867f;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.hk-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    background: none;
+    border-radius: 9px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    color: #46534c !important;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: left;
+    transition: 0.15s ease;
+}
+
+.hk-menu-item i {
+    width: 18px;
+    text-align: center;
+    color: #0b9f6e;
+    font-size: 14px;
+}
+
+.hk-menu-item:hover {
+    background: #f0faf6;
+    color: #0b9f6e !important;
+}
+
+.hk-menu-logout {
+    color: #c84d4d !important;
+    margin-top: 4px;
+    border-top: 1px solid #f2f5f3;
+    padding-top: 10px;
+}
+.hk-menu-logout i { color: #c84d4d; }
+.hk-menu-logout:hover { background: #fff3f3; color: #b73232 !important; }
+
+/* Notification Center Panel */
+.hk-notif-panel {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 48px;
+    width: 320px;
+    max-height: 420px;
+    background: #fff;
+    border: 1px solid #e1ebe6;
+    border-radius: 14px;
+    box-shadow: 0 20px 50px rgba(15, 60, 45, 0.18);
+    display: flex;
+    flex-direction: column;
+    z-index: 2500;
+    overflow: hidden;
+    animation: hkDropdownSlide 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hk-notif-panel[hidden] { display: none; }
+
+.hk-notif-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid #edf1ef;
+    background: #fafcfb;
+}
+
+.hk-notif-header h4 {
+    margin: 0;
+    font-size: 14px;
+    color: #1a3026;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.hk-notif-header button {
+    border: none;
+    background: none;
+    color: #0b9f6e;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+}
+
+.hk-notif-list {
+    overflow-y: auto;
+    max-height: 340px;
+    padding: 6px;
+}
+
+.hk-notif-item {
+    display: flex;
+    gap: 11px;
+    padding: 11px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: inherit;
+    transition: 0.15s ease;
+    border-bottom: 1px solid #f6f8f7;
+}
+
+.hk-notif-item:hover {
+    background: #f4faf7;
+}
+
+.hk-notif-item.unread {
+    background: #eef8f3;
+}
+
+.hk-notif-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #e6f6ee;
+    color: #0b9f6e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 13px;
+}
+
+.hk-notif-body {
+    flex: 1;
+}
+
+.hk-notif-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1e332b;
+    margin: 0 0 2px;
+}
+
+.hk-notif-msg {
+    font-size: 12px;
+    color: #55675e;
+    margin: 0 0 4px;
+    line-height: 1.4;
+}
+
+.hk-notif-time {
+    font-size: 11px;
+    color: #8c9b93;
+}
+
+.hk-notif-empty {
+    padding: 30px 16px;
+    text-align: center;
+    color: #8c9b93;
+    font-size: 13px;
+}
+
+/* Floating Real-time Toast Notification */
+.hk-live-toast {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    max-width: 380px;
+    background: #ffffff;
+    border-left: 5px solid #0b9f6e;
+    border-radius: 12px;
+    box-shadow: 0 16px 40px rgba(10, 45, 30, 0.22);
+    padding: 16px;
+    display: flex;
+    gap: 14px;
+    z-index: 9999;
+    animation: hkSlideToast 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes hkSlideToast {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.hk-live-toast-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #e6f6ef;
+    color: #0b9f6e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+}
+
+.hk-live-toast-content strong {
+    display: block;
+    font-size: 14px;
+    color: #173024;
+    margin-bottom: 3px;
+}
+
+.hk-live-toast-content p {
+    margin: 0;
+    font-size: 12px;
+    color: #4b5f54;
+    line-height: 1.45;
+}
+
+.hk-live-toast-close {
+    border: none;
+    background: none;
+    color: #a0afa7;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+    height: 20px;
+}
+
+.hk-live-toast-close:hover {
+    color: #33443c;
+}
+
+/* Cart badge */
+.nav-actions a { position: relative; }
+.nav-actions #cartCount {
+    position: absolute;
+    top: -9px;
+    right: -11px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    border-radius: 9px;
+    background: #0b9f6e;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Protected pages: hide content until session is verified */
+body.hk-auth-checking > main { visibility: hidden; }
+
+@media (max-width: 600px) {
+    .hk-menu { width: 230px; right: -6px; }
+    .hk-notif-panel { width: 290px; right: -40px; }
+    .hk-live-toast { right: 12px; left: 12px; max-width: none; }
+}
+
+/* ========================================================
+   HEALTHKART INCOMING DOCTOR CALL MODAL (PHONE / DESKTOP)
+   ======================================================== */
+.hk-incoming-call-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(8, 22, 16, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: hkFadeIn 0.3s ease-out;
+}
+
+@keyframes hkFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.hk-incoming-call-card {
+    position: relative;
+    background: linear-gradient(165deg, rgba(17, 36, 28, 0.95), rgba(9, 23, 17, 0.98));
+    border: 1px solid rgba(110, 231, 183, 0.25);
+    border-radius: 28px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.08);
+    padding: 40px 32px 36px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: hkScalePop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes hkScalePop {
+    from { transform: scale(0.85); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.hk-incoming-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(16, 185, 129, 0.16);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    color: #34d399;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 24px;
+}
+
+.hk-incoming-badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    animation: hkIncomingDotPulse 1.2s infinite ease-in-out;
+}
+
+@keyframes hkIncomingDotPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.6); opacity: 0.4; }
+}
+
+.hk-incoming-avatar-wrap {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hk-incoming-ripple {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid rgba(16, 185, 129, 0.6);
+    animation: hkCallRipple 2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.hk-incoming-ripple:nth-child(2) {
+    animation-delay: 0.65s;
+}
+
+.hk-incoming-ripple:nth-child(3) {
+    animation-delay: 1.3s;
+}
+
+@keyframes hkCallRipple {
+    0% { transform: scale(0.9); opacity: 0.8; }
+    100% { transform: scale(1.8); opacity: 0; }
+}
+
+.hk-incoming-avatar {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #10b981;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    background: #143527;
+    position: relative;
+    z-index: 2;
+}
+
+.hk-incoming-doc-name {
+    margin: 0 0 6px;
+    font-size: 23px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.3px;
+}
+
+.hk-incoming-doc-spec {
+    margin: 0 0 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6ee7b7;
+}
+
+.hk-incoming-hospital {
+    margin: 0 0 14px;
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+.hk-incoming-calling-text {
+    font-size: 13px;
+    color: #cbd5e1;
+    margin: 0 0 28px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.hk-incoming-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    width: 100%;
+    padding-top: 10px;
+}
+
+.hk-incoming-action-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.hk-incoming-btn {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease;
+    outline: none;
+}
+
+.hk-incoming-btn:hover {
+    transform: scale(1.08);
+}
+
+.hk-incoming-btn:active {
+    transform: scale(0.95);
+}
+
+.hk-incoming-btn-decline {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: #ffffff;
+    box-shadow: 0 8px 24px rgba(239, 68, 68, 0.45);
+}
+
+.hk-incoming-btn-decline:hover {
+    box-shadow: 0 12px 28px rgba(239, 68, 68, 0.6);
+}
+
+.hk-incoming-btn-accept {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: #ffffff;
+    box-shadow: 0 8px 28px rgba(16, 185, 129, 0.55);
+    animation: hkAcceptGlow 1.8s infinite ease-in-out;
+}
+
+@keyframes hkAcceptGlow {
+    0%, 100% { box-shadow: 0 8px 28px rgba(16, 185, 129, 0.55); }
+    50% { box-shadow: 0 8px 36px rgba(16, 185, 129, 0.85), 0 0 0 6px rgba(16, 185, 129, 0.25); }
+}
+
+.hk-incoming-btn-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #e2e8f0;
+}
+
+@media (max-width: 480px) {
+    .hk-incoming-call-overlay {
+        padding: 0;
+    }
+    .hk-incoming-call-card {
+        height: 100vh;
+        max-width: 100vw;
+        border-radius: 0;
+        border: none;
+        justify-content: center;
+        padding: 40px 24px;
+    }
+    .hk-incoming-actions {
+        gap: 40px;
+    }
+    .hk-incoming-btn {
+        width: 72px;
+        height: 72px;
+        font-size: 26px;
+    }
+}
+

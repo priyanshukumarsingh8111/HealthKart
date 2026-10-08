@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Compare Prices | HealthKart</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link rel="stylesheet" href="../css/compare.css">
+
+</head>
+
+<body>
+
+
+<header class="navbar">
+
+    <a href="../index.html" class="logo">
+
+        <i class="fa-solid fa-heart-pulse"></i>
+
+        <span>
+            Health<span>Kart</span>
+        </span>
+
+    </a>
+
+
+    <nav class="nav-links">
+
+        <a href="../index.html">
+            Home
+        </a>
+
+        <a href="search.html">
+            Medicines
+        </a>
+
+        <a href="compare.html" class="active">
+            Compare
+        </a>
+
+        <a href="doctors.html">
+            Doctors
+        </a>
+
+        <a href="my-health.html">
+            My Health
+        </a>
+
+    </nav>
+
+
+    <div class="nav-actions">
+
+        <a
+            href="cart.html"
+            class="cart-icon">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            <span id="cartCount">
+                0
+            </span>
+
+        </a>
+
+        <a
+            href="#"
+            class="login-button">
+
+            Login
+
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<main class="compare-page">
+
+
+    <section class="compare-header">
+
+        <p>
+            SMART SHOPPING
+        </p>
+
+        <h1>
+            Compare Prices
+        </h1>
+
+        <span>
+            Compare prices, delivery options and ratings
+            before choosing a provider.
+        </span>
+
+
+        <div class="compare-search">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                value="Paracetamol 500mg"
+                placeholder="Search product to compare">
+
+            <button>
+                Search
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="comparison-section">
+
+
+        <div class="selected-product">
+
+            <div class="selected-image" style="overflow:hidden; display:flex; align-items:center; justify-content:center;">
+                <img src="../images/medicines/paracetamol-500.jpg" alt="Paracetamol 500mg Tablets" style="width:100%; height:100%; object-fit:cover; border-radius:10px;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600';">
+            </div>
+
+
+            <div>
+
+                <span>
+                    MEDICINE
+                </span>
+
+                <h2>
+                    Paracetamol 500mg Tablets
+                </h2>
+
+                <div class="selected-rating">
+                    ★ 4.7
+                    <small>
+                        128 Reviews
+                    </small>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="comparison-summary">
+
+            <div>
+
+                <strong>
+                    4
+                </strong>
+
+                <span>
+                    Providers
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <strong>
+                    ₹25
+                </strong>
+
+                <span>
+                    Lowest Price
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <strong>
+                    ₹32
+                </strong>
+
+                <span>
+                    Highest Price
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="comparison-table-wrapper">
+
+            <table class="comparison-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Provider
+                        </th>
+
+                        <th>
+                            Price
+                        </th>
+
+                        <th>
+                            Delivery
+                        </th>
+
+                        <th>
+                            Rating
+                        </th>
+
+                        <th>
+                            Availability
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                    <!-- BEST DEAL -->
+
+                    <tr class="best-deal-row">
+
+                        <td>
+
+                            <div class="provider">
+
+                                <div class="provider-logo">
+                                    A
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        HealthStore
+                                    </strong>
+
+                                    <span>
+                                        Trusted Provider
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                            <span class="best-deal">
+                                BEST DEAL
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <strong class="table-price">
+                                ₹25
+                            </strong>
+
+                            <del>
+                                ₹35
+                            </del>
+
+                        </td>
+
+
+                        <td>
+
+                            <strong>
+                                Free
+                            </strong>
+
+                            <span>
+                                Tomorrow
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <span class="table-rating">
+                                ★ 4.7
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <span class="available">
+                                <i class="fa-solid fa-circle-check"></i>
+                                In Stock
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <button
+                                class="buy-button"
+                                onclick="buyProduct('HealthStore')">
+
+                                Buy Now
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+
+                    <!-- PROVIDER 2 -->
+
+                    <tr>
+
+                        <td>
+
+                            <div class="provider">
+
+                                <div class="provider-logo">
+                                    M
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        MedCare
+                                    </strong>
+
+                                    <span>
+                                        Verified Provider
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+
+                        <td>
+
+                            <strong class="table-price">
+                                ₹27
+                            </strong>
+
+                            <del>
+                                ₹35
+                            </del>
+
+                        </td>
+
+
+                        <td>
+
+                            <strong>
+                                ₹20
+                            </strong>
+
+                            <span>
+                                1-2 Days
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <span class="table-rating">
+                                ★ 4.5
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <span class="available">
+                                <i class="fa-solid fa-circle-check"></i>
+                                In Stock
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <button
+                                class="buy-button"
+                                onclick="buyProduct('MedCare')">
+
+                                Buy Now
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+
+                    <!-- PROVIDER 3 -->
+
+                    <tr>
+
+                        <td>
+
+                            <div class="provider">
+
+                                <div class="provider-logo">
+                                    P
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        PharmaPlus
+                                    </strong>
+
+                                    <span>
+                                        Verified Provider
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+
+                        <td>
+
+                            <strong class="table-price">
+                                ₹29
+                            </strong>
+
+                            <del>
+                                ₹35
+                            </del>
+
+                        </td>
+
+
+                        <td>
+
+                            <strong>
+                                Free
+                            </strong>
+
+                            <span>
+                                2 Days
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <span class="table-rating">
+                                ★ 4.6
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <span class="available">
+                                <i class="fa-solid fa-circle-check"></i>
+                                In Stock
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <button
+                                class="buy-button"
+                                onclick="buyProduct('PharmaPlus')">
+
+                                Buy Now
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+
+                    <!-- PROVIDER 4 -->
+
+                    <tr>
+
+                        <td>
+
+                            <div class="provider">
+
+                                <div class="provider-logo">
+                                    C
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        CareMart
+                                    </strong>
+
+                                    <span>
+                                        Verified Provider
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+
+                        <td>
+
+                            <strong class="table-price">
+                                ₹32
+                            </strong>
+
+                        </td>
+
+
+                        <td>
+
+                            <strong>
+                                Free
+                            </strong>
+
+                            <span>
+                                Tomorrow
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <span class="table-rating">
+                                ★ 4.4
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <span class="available">
+                                <i class="fa-solid fa-circle-check"></i>
+                                In Stock
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <button
+                                class="buy-button"
+                                onclick="buyProduct('CareMart')">
+
+                                Buy Now
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+
+        <div class="comparison-note">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            Prices and availability shown here are
+            demonstration data for the frontend.
+            Real provider integrations can be connected
+            through the backend later.
+
+        </div>
+
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <div class="footer-bottom">
+
+        © 2026 HealthKart.
+        All rights reserved.
+
+    </div>
+
+</footer>
+
+
+<script>
+
+function buyProduct(provider) {
+
+    alert(
+        "You selected " +
+        provider +
+        ". Checkout integration will be connected later."
+    );
+
+}
+
+
+</script>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script type="module" src="../js/nav-auth.js"></script>
+</body>
+
+</html>

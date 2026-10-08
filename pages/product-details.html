@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Product Details | HealthKart</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link rel="stylesheet" href="../css/product.css">
+
+</head>
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <a href="../index.html" class="logo">
+
+        <i class="fa-solid fa-heart-pulse"></i>
+
+        <span>
+            Health<span>Kart</span>
+        </span>
+
+    </a>
+
+
+    <nav class="nav-links">
+
+        <a href="../index.html">
+            Home
+        </a>
+
+        <a href="search.html">
+            Medicines
+        </a>
+
+        <a href="compare.html">
+            Compare
+        </a>
+
+        <a href="doctors.html">
+            Doctors
+        </a>
+
+        <a href="my-health.html">
+            My Health
+        </a>
+
+    </nav>
+
+
+    <div class="nav-actions">
+
+        <a
+            href="cart.html"
+            class="cart-icon">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            <span id="cartCount">
+                0
+            </span>
+
+        </a>
+
+
+        <a
+            href="#"
+            class="login-button">
+
+            Login
+
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<!-- ================= BREADCRUMB ================= -->
+
+<div class="breadcrumb">
+
+    <a href="../index.html">
+        Home
+    </a>
+
+    <i class="fa-solid fa-chevron-right"></i>
+
+    <a href="search.html">
+        Medicines
+    </a>
+
+    <i class="fa-solid fa-chevron-right"></i>
+
+    <span>
+        Product Details
+    </span>
+
+</div>
+
+
+
+<!-- ================= PRODUCT DETAILS ================= -->
+
+<main class="product-details-page">
+
+
+    <section class="product-details">
+
+
+        <!-- PRODUCT IMAGE -->
+
+        <div class="product-gallery">
+
+            <div class="main-product-image" style="overflow:hidden; display:flex; align-items:center; justify-content:center;">
+                <span class="discount-badge">
+                    28% OFF
+                </span>
+                <img id="mainProductImg" src="../images/medicines/paracetamol-500.jpg" alt="Paracetamol 500mg" style="width:100%; height:100%; object-fit:cover; border-radius:12px;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600';">
+            </div>
+
+            <div class="thumbnail-row">
+                <div class="thumbnail active" onclick="document.getElementById('mainProductImg').src='../images/medicines/paracetamol-500.jpg'" style="overflow:hidden; padding:2px;">
+                    <img src="../images/medicines/paracetamol-500.jpg" alt="Paracetamol" style="width:100%; height:100%; object-fit:cover; border-radius:6px;">
+                </div>
+                <div class="thumbnail" onclick="document.getElementById('mainProductImg').src='../images/medicines/amoxicillin.jpg'" style="overflow:hidden; padding:2px;">
+                    <img src="../images/medicines/amoxicillin.jpg" alt="Capsules" style="width:100%; height:100%; object-fit:cover; border-radius:6px;">
+                </div>
+                <div class="thumbnail" onclick="document.getElementById('mainProductImg').src='../images/medicines/cetirizine.jpg'" style="overflow:hidden; padding:2px;">
+                    <img src="../images/medicines/cetirizine.jpg" alt="Blister" style="width:100%; height:100%; object-fit:cover; border-radius:6px;">
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <!-- PRODUCT INFORMATION -->
+
+        <div class="product-information">
+
+            <span class="product-category">
+                MEDICINE
+            </span>
+
+
+            <h1>
+                Paracetamol 500mg Tablets
+            </h1>
+
+
+            <p class="short-description">
+
+                Effective relief from fever and
+                mild to moderate pain.
+
+            </p>
+
+
+            <div class="product-rating">
+
+                <span class="rating-box">
+                    ★ 4.7
+                </span>
+
+                <span>
+                    128 Ratings & Reviews
+                </span>
+
+            </div>
+
+
+            <div class="price-section">
+
+                <strong>
+                    ₹25
+                </strong>
+
+                <del>
+                    ₹35
+                </del>
+
+                <span>
+                    28% OFF
+                </span>
+
+            </div>
+
+
+            <p class="tax-info">
+                Inclusive of all applicable taxes
+            </p>
+
+
+            <div class="divider"></div>
+
+
+            <!-- PACK SIZE -->
+
+            <div class="option-section">
+
+                <h3>
+                    Select Pack Size
+                </h3>
+
+                <div class="pack-options">
+
+                    <button class="pack active">
+                        10 Tablets
+                    </button>
+
+                    <button class="pack">
+                        20 Tablets
+                    </button>
+
+                    <button class="pack">
+                        30 Tablets
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- STOCK -->
+
+            <div class="availability">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <span>
+                    In Stock
+                </span>
+
+                <small>
+                    • Delivery available
+                </small>
+
+            </div>
+
+
+            <!-- ACTIONS -->
+
+            <div class="product-actions">
+
+                <button
+                    class="add-cart-large"
+                    onclick="addProductToCart()">
+
+                    <i class="fa-solid fa-cart-plus"></i>
+
+                    Add to Cart
+
+                </button>
+
+
+                <button
+                    class="buy-now">
+
+                    Buy Now
+
+                </button>
+
+            </div>
+
+
+            <!-- TRUST -->
+
+            <div class="trust-row">
+
+                <div>
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    <span>
+                        Secure Purchase
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <i class="fa-solid fa-truck-fast"></i>
+
+                    <span>
+                        Fast Delivery
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <i class="fa-solid fa-rotate-left"></i>
+
+                    <span>
+                        Easy Returns
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= PRODUCT INFORMATION ================= -->
+
+    <section class="information-card">
+
+        <div class="information-tabs">
+
+            <button class="active">
+                About Product
+            </button>
+
+            <button>
+                Uses
+            </button>
+
+            <button>
+                Safety Information
+            </button>
+
+            <button>
+                Reviews
+            </button>
+
+        </div>
+
+
+        <div class="information-content">
+
+            <h2>
+                About Paracetamol 500mg
+            </h2>
+
+            <p>
+                Paracetamol is commonly used for temporary
+                relief of mild to moderate pain and fever.
+                Always use medicines according to the
+                product instructions or advice from a
+                qualified healthcare professional.
+            </p>
+
+
+            <h3>
+                Product Highlights
+            </h3>
+
+            <ul>
+
+                <li>
+                    Easy-to-use tablet format
+                </li>
+
+                <li>
+                    Suitable for fever and pain relief
+                </li>
+
+                <li>
+                    Convenient pack size
+                </li>
+
+                <li>
+                    Store in a cool and dry place
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= COMPARE CTA ================= -->
+
+    <section class="compare-cta">
+
+        <div>
+
+            <span>
+                SAVE MORE
+            </span>
+
+            <h2>
+                Compare Prices Before You Buy
+            </h2>
+
+            <p>
+                Check prices, delivery options and ratings
+                from different providers.
+            </p>
+
+        </div>
+
+
+        <a
+            href="compare.html"
+            class="compare-button">
+
+            Compare Prices
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+    </section>
+
+
+</main>
+
+
+
+<footer>
+
+    <div class="footer-content">
+
+        <div class="footer-brand">
+
+            <div class="logo">
+
+                <i class="fa-solid fa-heart-pulse"></i>
+
+                <span>
+                    Health<span>Kart</span>
+                </span>
+
+            </div>
+
+            <p>
+                Your trusted platform for smarter
+                healthcare decisions.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        © 2026 HealthKart.
+        All rights reserved.
+
+    </div>
+
+</footer>
+
+
+
+<script>
+
+function getCart() {
+
+    return JSON.parse(
+        localStorage.getItem("healthkartCart")
+    ) || [];
+
+}
+
+
+function updateCartCount() {
+
+    const cart = getCart();
+
+    const count =
+        document.getElementById("cartCount");
+
+    if (count) {
+
+        count.textContent =
+            cart.reduce(
+                (total, item) =>
+                    total + item.quantity,
+                0
+            );
+
+    }
+
+}
+
+
+function addProductToCart() {
+
+    const cart = getCart();
+
+    const product = {
+
+        name: "Paracetamol 500mg Tablets",
+
+        price: 25,
+
+        quantity: 1
+
+    };
+
+
+    const existing =
+        cart.find(
+            item => item.name === product.name
+        );
+
+
+    if (existing) {
+
+        existing.quantity += 1;
+
+    } else {
+
+        cart.push(product);
+
+    }
+
+
+    localStorage.setItem(
+        "healthkartCart",
+        JSON.stringify(cart)
+    );
+
+
+    updateCartCount();
+
+    alert(
+        "Paracetamol 500mg added to cart!"
+    );
+
+}
+
+
+updateCartCount();
+
+</script>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script type="module" src="../js/nav-auth.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,710 @@
+/* ========================================
+   HEALTHKART REAL-TIME AI HEALTH AGENT
+   Floating assistant, audio/voice reminders,
+   live medicine eating & yoga schedules.
+   ======================================== */
+
+:root {
+    --hk-ai-primary: #0b9f6e;
+    --hk-ai-primary-dark: #077953;
+    --hk-ai-primary-light: #e8f9f2;
+    --hk-ai-gradient: linear-gradient(135deg, #0b9f6e 0%, #059669 50%, #0284c7 100%);
+    --hk-ai-dark: #121e19;
+    --hk-ai-surface: #ffffff;
+    --hk-ai-border: #e2ece7;
+    --hk-ai-text: #1d2c26;
+    --hk-ai-muted: #64776e;
+    --hk-ai-shadow: 0 16px 48px rgba(11, 159, 110, 0.18), 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* Floating AI Assistant Trigger Button */
+.hk-ai-fab {
+    position: fixed;
+    bottom: 26px;
+    right: 26px;
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--hk-ai-gradient);
+    color: #ffffff;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 20px 12px 14px;
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: var(--hk-ai-shadow);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    outline: none;
+}
+
+.hk-ai-fab:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 20px 52px rgba(11, 159, 110, 0.28), 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.hk-ai-fab:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+.hk-ai-fab-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    position: relative;
+}
+
+.hk-ai-fab-pulse {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    animation: hkAiPulse 2s infinite;
+    pointer-events: none;
+}
+
+@keyframes hkAiPulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    70% { transform: scale(1.5); opacity: 0; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+.hk-ai-fab-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: #ef4444;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 800;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    box-shadow: 0 2px 6px rgba(239, 68, 68, 0.4);
+}
+
+/* AI Drawer / Modal */
+.hk-ai-drawer {
+    position: fixed;
+    bottom: 90px;
+    right: 26px;
+    width: 420px;
+    max-width: calc(100vw - 32px);
+    height: 640px;
+    max-height: calc(100vh - 120px);
+    background: var(--hk-ai-surface);
+    border: 1px solid var(--hk-ai-border);
+    border-radius: 22px;
+    box-shadow: 0 24px 64px rgba(11, 40, 28, 0.18), 0 4px 16px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    z-index: 9999;
+    overflow: hidden;
+    font-family: 'Inter', -apple-system, sans-serif;
+    transform: scale(0.92) translateY(20px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hk-ai-drawer.open {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Header */
+.hk-ai-header {
+    background: var(--hk-ai-gradient);
+    color: #ffffff;
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.hk-ai-header-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.hk-ai-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+}
+
+.hk-ai-title h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: -0.2px;
+}
+
+.hk-ai-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+    opacity: 0.92;
+    margin-top: 2px;
+}
+
+.hk-ai-status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #34d399;
+    box-shadow: 0 0 8px #34d399;
+    animation: hkAiDotGlow 2s infinite;
+}
+
+@keyframes hkAiDotGlow {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.2); }
+}
+
+.hk-ai-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.hk-ai-icon-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.2s;
+}
+
+.hk-ai-icon-btn:hover {
+    background: rgba(255, 255, 255, 0.28);
+}
+
+.hk-ai-icon-btn.active-off {
+    background: rgba(239, 68, 68, 0.4);
+}
+
+/* Nav Tabs */
+.hk-ai-tabs {
+    display: flex;
+    background: #f4f8f6;
+    border-bottom: 1px solid var(--hk-ai-border);
+    padding: 4px 10px 0;
+    gap: 6px;
+}
+
+.hk-ai-tab {
+    flex: 1;
+    padding: 9px 8px;
+    border: none;
+    background: none;
+    color: var(--hk-ai-muted);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.hk-ai-tab.active {
+    color: var(--hk-ai-primary);
+    border-bottom-color: var(--hk-ai-primary);
+    background: #ffffff;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+/* Body / Views */
+.hk-ai-body {
+    flex: 1;
+    overflow-y: auto;
+    position: relative;
+    background: #fafcfb;
+}
+
+.hk-ai-view {
+    display: none;
+    height: 100%;
+}
+
+.hk-ai-view.active {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Chat View */
+.hk-ai-chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.hk-ai-msg {
+    max-width: 86%;
+    padding: 12px 14px;
+    border-radius: 16px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+.hk-ai-msg.bot {
+    align-self: flex-start;
+    background: #ffffff;
+    color: var(--hk-ai-text);
+    border: 1px solid var(--hk-ai-border);
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.hk-ai-msg.bot strong {
+    color: var(--hk-ai-primary-dark);
+}
+
+.hk-ai-msg.user {
+    align-self: flex-end;
+    background: var(--hk-ai-gradient);
+    color: #ffffff;
+    border-bottom-right-radius: 4px;
+}
+
+/* Quick Prompt Chips */
+.hk-ai-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 8px 14px;
+    background: #ffffff;
+    border-top: 1px solid var(--hk-ai-border);
+}
+
+.hk-ai-chip {
+    padding: 6px 11px;
+    background: var(--hk-ai-primary-light);
+    color: var(--hk-ai-primary-dark);
+    border: 1px solid #cceee0;
+    border-radius: 16px;
+    font-size: 11.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.hk-ai-chip:hover {
+    background: #0b9f6e;
+    color: #ffffff;
+    border-color: #0b9f6e;
+}
+
+/* Chat Input Bar */
+.hk-ai-input-bar {
+    padding: 12px 14px;
+    background: #ffffff;
+    border-top: 1px solid var(--hk-ai-border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.hk-ai-input {
+    flex: 1;
+    border: 1px solid var(--hk-ai-border);
+    border-radius: 24px;
+    padding: 10px 16px;
+    font-size: 13.5px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: #fbfdfc;
+}
+
+.hk-ai-input:focus {
+    border-color: var(--hk-ai-primary);
+    box-shadow: 0 0 0 3px rgba(11, 159, 110, 0.12);
+    background: #ffffff;
+}
+
+.hk-ai-send-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: none;
+    background: var(--hk-ai-primary);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.hk-ai-send-btn:hover {
+    background: var(--hk-ai-primary-dark);
+    transform: scale(1.05);
+}
+
+.hk-ai-mic-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--hk-ai-border);
+    background: #f4f8f6;
+    color: var(--hk-ai-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.hk-ai-mic-btn:hover {
+    color: var(--hk-ai-primary);
+    background: var(--hk-ai-primary-light);
+}
+
+.hk-ai-mic-btn.recording {
+    background: #ef4444;
+    color: #ffffff;
+    animation: hkAiDotGlow 1s infinite;
+}
+
+/* Reminders View */
+.hk-ai-reminders-view {
+    padding: 16px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.hk-ai-rem-card {
+    background: #ffffff;
+    border: 1px solid var(--hk-ai-border);
+    border-radius: 14px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+    position: relative;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.hk-ai-rem-card:hover {
+    border-color: #b9d9cb;
+    transform: translateY(-1px);
+}
+
+.hk-ai-rem-card.medicine {
+    border-left: 4px solid #0b9f6e;
+}
+
+.hk-ai-rem-card.yoga {
+    border-left: 4px solid #0284c7;
+}
+
+.hk-ai-rem-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.hk-ai-rem-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--hk-ai-text);
+    margin: 0 0 2px;
+}
+
+.hk-ai-rem-badge {
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 12px;
+    text-transform: uppercase;
+}
+
+.hk-ai-rem-badge.medicine {
+    background: #eefaf4;
+    color: #0b9f6e;
+}
+
+.hk-ai-rem-badge.yoga {
+    background: #e0f2fe;
+    color: #0284c7;
+}
+
+.hk-ai-rem-meta {
+    font-size: 12px;
+    color: var(--hk-ai-muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.hk-ai-rem-meta span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.hk-ai-meal-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    background: #fffbeb;
+    color: #b45309;
+    padding: 2px 7px;
+    border-radius: 6px;
+    border: 1px solid #fef3c7;
+}
+
+.hk-ai-rem-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.hk-ai-take-btn {
+    flex: 1;
+    padding: 7px 12px;
+    background: var(--hk-ai-primary);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.hk-ai-take-btn:hover {
+    background: var(--hk-ai-primary-dark);
+}
+
+.hk-ai-take-btn.taken {
+    background: #e2ece7;
+    color: #3b5247;
+    cursor: default;
+}
+
+.hk-ai-snooze-btn {
+    padding: 7px 12px;
+    background: #f3f6f5;
+    color: var(--hk-ai-muted);
+    border: 1px solid var(--hk-ai-border);
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.hk-ai-snooze-btn:hover {
+    background: #e9f0ec;
+    color: var(--hk-ai-text);
+}
+
+/* Prescriptions View */
+.hk-ai-rx-view {
+    padding: 16px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.hk-ai-rx-card {
+    background: #ffffff;
+    border: 1px solid var(--hk-ai-border);
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.hk-ai-rx-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--hk-ai-border);
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+}
+
+.hk-ai-rx-id {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--hk-ai-primary);
+    background: var(--hk-ai-primary-light);
+    padding: 3px 8px;
+    border-radius: 6px;
+}
+
+.hk-ai-rx-doc {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--hk-ai-text);
+}
+
+.hk-ai-rx-item {
+    font-size: 12.5px;
+    color: var(--hk-ai-text);
+    padding: 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ========================================
+   REAL-TIME PROACTIVE POPUP REMINDER BANNER
+   Pops up when a medicine or yoga is due!
+   ======================================== */
+.hk-ai-reminder-banner {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 10000;
+    width: 380px;
+    max-width: calc(100vw - 32px);
+    background: #ffffff;
+    border: 1px solid #0b9f6e;
+    border-radius: 18px;
+    box-shadow: 0 20px 50px rgba(11, 159, 110, 0.25), 0 6px 18px rgba(0, 0, 0, 0.08);
+    padding: 18px;
+    display: flex;
+    gap: 14px;
+    animation: hkAiSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    font-family: 'Inter', sans-serif;
+}
+
+@keyframes hkAiSlideIn {
+    from { transform: translateX(120%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.hk-ai-reminder-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    background: var(--hk-ai-primary-light);
+    color: var(--hk-ai-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.hk-ai-reminder-content {
+    flex: 1;
+}
+
+.hk-ai-reminder-content h4 {
+    margin: 0 0 3px;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--hk-ai-text);
+}
+
+.hk-ai-reminder-content p {
+    margin: 0 0 10px;
+    font-size: 12.5px;
+    color: var(--hk-ai-muted);
+    line-height: 1.4;
+}
+
+.hk-ai-reminder-btns {
+    display: flex;
+    gap: 8px;
+}
+
+.hk-ai-banner-btn {
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+}
+
+.hk-ai-banner-btn.primary {
+    background: var(--hk-ai-primary);
+    color: #ffffff;
+}
+
+.hk-ai-banner-btn.primary:hover {
+    background: var(--hk-ai-primary-dark);
+}
+
+.hk-ai-banner-btn.secondary {
+    background: #f3f6f5;
+    color: var(--hk-ai-muted);
+}
+
+.hk-ai-banner-btn.secondary:hover {
+    background: #e5ece8;
+    color: var(--hk-ai-text);
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+    .hk-ai-drawer {
+        right: 12px;
+        bottom: 84px;
+        width: calc(100vw - 24px);
+        height: 560px;
+    }
+    .hk-ai-fab {
+        right: 16px;
+        bottom: 18px;
+        padding: 10px 16px 10px 12px;
+        font-size: 13px;
+    }
+}

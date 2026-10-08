@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Medicine Eating & Yoga Reminders - HealthKart</title>
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../css/reminders.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body data-require-auth>
+
+    <!-- HEADER -->
+    <header class="navbar">
+        <a href="../index.html" class="logo">
+            <i class="fa-solid fa-heart-pulse"></i>
+            <span>Health<span>Kart</span></span>
+        </a>
+
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="search.html">Medicines</a>
+            <a href="doctors.html">Doctors</a>
+            <a href="reminders.html" class="active" style="color:#0b9f6e;">Reminders</a>
+            <a href="prescriptions.html">Prescriptions</a>
+            <a href="my-health.html">My Health</a>
+        </nav>
+
+        <div class="nav-actions">
+            <a href="my-health.html" class="back-link">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to My Health
+            </a>
+        </div>
+    </header>
+
+
+    <!-- MAIN -->
+    <main class="reminder-container">
+
+        <!-- PAGE INTRO -->
+        <section class="page-intro">
+            <div>
+                <p class="label">REAL-TIME HEALTHCARE COPILOT</p>
+                <h1>Medicine Eating & Yoga Reminders</h1>
+                <p>
+                    Proactive real-time audio and voice reminders for your medication schedule with meal timings (before/after breakfast, lunch, or dinner) and doctor-prescribed yoga & pranayama routines.
+                </p>
+            </div>
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <button class="add-reminder-button" id="testAudioReminderBtn" style="background:#0284c7;">
+                    <i class="fa-solid fa-bell"></i>
+                    Test Chime
+                </button>
+                <button class="add-reminder-button" id="addReminderButton">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Reminder
+                </button>
+            </div>
+        </section>
+
+
+        <!-- TODAY SUMMARY STATS -->
+        <section class="today-summary" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:16px;">
+            <div class="summary-left">
+                <div class="summary-icon">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+                <div>
+                    <span>Total Schedules</span>
+                    <strong id="todayCount">0</strong>
+                </div>
+            </div>
+
+            <div class="summary-left">
+                <div class="summary-icon" style="background:#eefaf4; color:#0b9f6e;">
+                    <i class="fa-solid fa-pills"></i>
+                </div>
+                <div>
+                    <span>Medicines (Eating)</span>
+                    <strong id="medicineCount">0</strong>
+                </div>
+            </div>
+
+            <div class="summary-left">
+                <div class="summary-icon" style="background:#e0f2fe; color:#0284c7;">
+                    <i class="fa-solid fa-spa"></i>
+                </div>
+                <div>
+                    <span>Daily Yoga Sessions</span>
+                    <strong id="yogaCount">0</strong>
+                </div>
+            </div>
+
+            <div class="summary-left">
+                <div class="summary-icon" style="background:#fef3c7; color:#d97706;">
+                    <i class="fa-solid fa-file-prescription"></i>
+                </div>
+                <div>
+                    <span>From Doctor's Rx</span>
+                    <strong id="doctorRxCount">0</strong>
+                </div>
+            </div>
+        </section>
+
+        <!-- FILTER TABS -->
+        <div style="display:flex; gap:10px; margin:24px 0 16px; flex-wrap:wrap;">
+            <button type="button" class="tab-filter-btn active" data-filter="all" style="padding:10px 18px; border-radius:24px; border:1px solid #cce5da; background:#0b9f6e; color:#fff; font-weight:700; cursor:pointer;">
+                <i class="fa-solid fa-list-check"></i> All Schedules
+            </button>
+            <button type="button" class="tab-filter-btn" data-filter="medicine" style="padding:10px 18px; border-radius:24px; border:1px solid #d0e8dd; background:#fff; color:#31473d; font-weight:700; cursor:pointer;">
+                <i class="fa-solid fa-pills" style="color:#0b9f6e;"></i> Medicine Eating
+            </button>
+            <button type="button" class="tab-filter-btn" data-filter="yoga" style="padding:10px 18px; border-radius:24px; border:1px solid #d0e8dd; background:#fff; color:#31473d; font-weight:700; cursor:pointer;">
+                <i class="fa-solid fa-spa" style="color:#0284c7;"></i> Yoga & Pranayama
+            </button>
+            <button type="button" class="tab-filter-btn" data-filter="prescribed" style="padding:10px 18px; border-radius:24px; border:1px solid #d0e8dd; background:#fff; color:#31473d; font-weight:700; cursor:pointer;">
+                <i class="fa-solid fa-file-prescription" style="color:#d97706;"></i> Prescribed By Doctor
+            </button>
+        </div>
+
+
+        <!-- REMINDERS LIST -->
+        <section class="reminder-section">
+            <div class="section-title">
+                <div>
+                    <p class="label">LIVE SCHEDULE</p>
+                    <h2>Scheduled Health Routines</h2>
+                    <p>
+                        Real-time notifications trigger at exact times with audio chimes and voice alerts.
+                    </p>
+                </div>
+            </div>
+
+
+            <!-- EMPTY STATE -->
+            <div class="empty-reminder" id="emptyReminder">
+                <div class="empty-icon">
+                    <i class="fa-solid fa-bell-slash"></i>
+                </div>
+                <h3>No reminders scheduled yet</h3>
+                <p>
+                    Add a medicine reminder with meal eating timings or daily yoga routine.
+                </p>
+                <button id="emptyAddButton">
+                    <i class="fa-solid fa-plus"></i> Add First Reminder
+                </button>
+            </div>
+
+
+            <!-- REMINDER CARDS LIST -->
+            <div class="reminder-list" id="reminderList"></div>
+
+        </section>
+
+
+        <!-- INFORMATION BOX -->
+        <section class="reminder-info">
+            <div class="info-icon">
+                <i class="fa-solid fa-lightbulb"></i>
+            </div>
+            <div>
+                <h3>Medicine Eating & Yoga Rules</h3>
+                <p>
+                    <strong>Why meal timings matter:</strong> Pain relievers and antibiotics protect your stomach lining when taken <em>after food</em>, while antacids work best on an <em>empty stomach</em>. Yoga postures stimulate lymphatic circulation and enhance digestive metabolism. Always follow your doctor's official prescription instructions.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- ADD REMINDER MODAL -->
+    <div class="modal-overlay" id="reminderModal">
+        <div class="reminder-modal" style="max-width:540px;">
+            <!-- CLOSE -->
+            <button class="close-modal" id="closeReminderModal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="modal-icon">
+                <i class="fa-solid fa-bell"></i>
+            </div>
+
+            <h2>Add Health Reminder</h2>
+            <p>Schedule your medicine eating times or daily yoga routines.</p>
+
+            <!-- TYPE SELECTOR TABS -->
+            <div style="display:flex; background:#eef4f1; border-radius:12px; padding:4px; margin-bottom:18px;">
+                <button type="button" id="typeTabMedicine" class="type-tab-btn active" style="flex:1; padding:9px; border-radius:8px; border:none; background:#0b9f6e; color:#fff; font-weight:700; cursor:pointer;">
+                    <i class="fa-solid fa-pills"></i> Medicine (Meal Timing)
+                </button>
+                <button type="button" id="typeTabYoga" class="type-tab-btn" style="flex:1; padding:9px; border-radius:8px; border:none; background:transparent; color:#51665c; font-weight:700; cursor:pointer;">
+                    <i class="fa-solid fa-spa"></i> Yoga & Routine
+                </button>
+            </div>
+
+            <!-- FORM -->
+            <form id="reminderForm">
+                <input type="hidden" id="reminderType" value="medicine" />
+
+                <!-- MEDICINE FIELDS -->
+                <div id="medicineFieldsGroup">
+                    <div class="form-group">
+                        <label for="medicineName">Medicine Name *</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-capsules"></i>
+                            <input type="text" id="medicineName" placeholder="e.g. Paracetamol 500mg">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="dosage">Dosage</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-prescription-bottle-medical"></i>
+                                <input type="text" id="dosage" placeholder="e.g. 1 Tablet">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mealTiming">Meal Timing (Crucial) *</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-utensils"></i>
+                                <select id="mealTiming">
+                                    <option value="After Lunch">After Lunch (Post-Meal)</option>
+                                    <option value="Before Breakfast">Before Breakfast (Empty Stomach)</option>
+                                    <option value="After Breakfast">After Breakfast</option>
+                                    <option value="Before Lunch">Before Lunch</option>
+                                    <option value="After Dinner">After Dinner</option>
+                                    <option value="Empty Stomach">Empty Stomach</option>
+                                    <option value="Bedtime">Bedtime</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- YOGA FIELDS -->
+                <div id="yogaFieldsGroup" style="display:none;">
+                    <div class="form-group">
+                        <label for="yogaName">Yoga Pose / Routine Name *</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-spa"></i>
+                            <input type="text" id="yogaName" placeholder="e.g. Surya Namaskar, Anulom Vilom, Bhujangasana">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="yogaDuration">Duration</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-stopwatch"></i>
+                                <input type="text" id="yogaDuration" placeholder="e.g. 15 Mins">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="yogaBenefit">Target Health Benefit</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-heart-pulse"></i>
+                                <input type="text" id="yogaBenefit" placeholder="e.g. Lower back pain, digestion">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TIME & FREQUENCY -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="reminderTime">Reminder Time *</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-clock"></i>
+                            <input type="time" id="reminderTime" required value="13:30">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="frequency">Frequency</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-repeat"></i>
+                            <select id="frequency" required>
+                                <option value="Daily">Daily</option>
+                                <option value="Twice daily">Twice daily</option>
+                                <option value="Three times daily">Three times daily</option>
+                                <option value="Weekly">Weekly</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INSTRUCTIONS -->
+                <div class="form-group">
+                    <label for="reminderInstructions">Instructions / Notes</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-info"></i>
+                        <input type="text" id="reminderInstructions" placeholder="e.g. Take with 1 glass warm water">
+                    </div>
+                </div>
+
+                <!-- SUBMIT -->
+                <button type="submit" class="save-reminder">
+                    <i class="fa-solid fa-check"></i>
+                    Schedule Reminder
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="module" src="../js/reminders.js"></script>
+    <script type="module" src="../js/nav-auth.js"></script>
+</body>
+
+</html>

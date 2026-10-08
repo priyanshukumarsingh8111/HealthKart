@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Book Appointment | HealthKart</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link
+        rel="stylesheet"
+        href="../css/appointment.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header class="main-header">
+
+    <div class="header-container">
+
+        <a href="../index.html" class="logo">
+
+            <i class="fa-solid fa-heart-pulse"></i>
+
+            Health<span>Kart</span>
+
+        </a>
+
+
+        <div class="header-search">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                placeholder="Search medicines, doctors..."
+            >
+
+        </div>
+
+
+        <nav class="header-nav">
+
+            <a href="../index.html">
+
+                <i class="fa-solid fa-house"></i>
+
+                Home
+
+            </a>
+
+
+            <a href="search.html">
+
+                <i class="fa-solid fa-pills"></i>
+
+                Medicines
+
+            </a>
+
+
+            <a href="doctors.html">
+
+                <i class="fa-solid fa-user-doctor"></i>
+
+                Doctors
+
+            </a>
+
+
+            <a href="cart.html">
+
+                <i class="fa-solid fa-cart-shopping"></i>
+
+                Cart
+
+                <span id="cartCount">0</span>
+
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+
+<!-- ================= BREADCRUMB ================= -->
+
+<div class="breadcrumb-container">
+
+    <div class="breadcrumb">
+
+        <a href="../index.html">
+            Home
+        </a>
+
+        <i class="fa-solid fa-chevron-right"></i>
+
+        <a href="doctors.html">
+            Doctors
+        </a>
+
+        <i class="fa-solid fa-chevron-right"></i>
+
+        <span>
+            Book Appointment
+        </span>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="appointment-container">
+
+
+    <!-- PAGE HEADING -->
+
+    <div class="page-heading">
+
+        <span class="heading-label">
+
+            <i class="fa-solid fa-calendar-check"></i>
+
+            Doctor Consultation
+
+        </span>
+
+        <h1>
+            Book Your Appointment
+        </h1>
+
+        <p>
+            Select your preferred consultation type,
+            date and time.
+        </p>
+
+    </div>
+
+
+
+    <!-- ================= APPOINTMENT LAYOUT ================= -->
+
+    <div class="appointment-layout">
+
+
+        <!-- ================= LEFT SIDE ================= -->
+
+        <section class="appointment-form">
+
+
+            <!-- DOCTOR -->
+
+            <div class="appointment-card">
+
+                <h2>
+
+                    <i class="fa-solid fa-user-doctor"></i>
+
+                    Selected Doctor
+
+                </h2>
+
+
+                <div class="selected-doctor">
+
+                    <div class="doctor-mini-avatar">
+
+                        <i class="fa-solid fa-user-doctor"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong id="selectedDoctorName">
+                            Dr. Rahul Sharma
+                        </strong>
+
+                        <span id="selectedDoctorSpecialization">
+                            General Physician
+                        </span>
+
+                        <small>
+
+                            <i class="fa-solid fa-star"></i>
+
+                            <span id="selectedDoctorRating">
+                                4.8
+                            </span>
+
+                        </small>
+
+                    </div>
+
+
+                    <a href="doctors.html">
+                        Change
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CONSULTATION TYPE -->
+
+            <div class="appointment-card">
+
+                <h2>
+
+                    <i class="fa-solid fa-video"></i>
+
+                    Consultation Type
+
+                </h2>
+
+
+                <div class="consultation-options">
+
+
+                    <label
+                        class="consultation-option selected"
+                    >
+
+                        <input
+                            type="radio"
+                            name="consultation"
+                            value="Video Consultation"
+                            checked
+                        >
+
+
+                        <div class="option-icon">
+
+                            <i class="fa-solid fa-video"></i>
+
+                        </div>
+
+
+                        <div class="option-text">
+
+                            <strong>
+                                Video Consultation
+                            </strong>
+
+                            <span>
+                                Talk to the doctor online
+                            </span>
+
+                        </div>
+
+
+                        <i class="fa-solid fa-circle-check check-icon"></i>
+
+                    </label>
+
+
+
+                    <label class="consultation-option">
+
+                        <input
+                            type="radio"
+                            name="consultation"
+                            value="Audio Consultation"
+                        >
+
+
+                        <div class="option-icon">
+
+                            <i class="fa-solid fa-phone"></i>
+
+                        </div>
+
+
+                        <div class="option-text">
+
+                            <strong>
+                                Audio Consultation
+                            </strong>
+
+                            <span>
+                                Voice consultation with doctor
+                            </span>
+
+                        </div>
+
+
+                        <i class="fa-solid fa-circle-check check-icon"></i>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- DATE -->
+
+            <div class="appointment-card">
+
+                <h2>
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    Select Date
+
+                </h2>
+
+
+                <div
+                    class="date-options"
+                    id="dateOptions"
+                >
+
+                    <!-- JS will generate dates -->
+
+                </div>
+
+            </div>
+
+
+
+            <!-- TIME -->
+
+            <div class="appointment-card">
+
+                <h2>
+
+                    <i class="fa-solid fa-clock"></i>
+
+                    Select Time
+
+                </h2>
+
+
+                <div class="time-section">
+
+
+                    <h4>
+                        Morning
+                    </h4>
+
+
+                    <div class="time-options">
+
+                        <button
+                            class="time-btn"
+                            type="button"
+                        >
+                            10:00 AM
+                        </button>
+
+                        <button
+                            class="time-btn"
+                            type="button"
+                        >
+                            11:00 AM
+                        </button>
+
+                        <button
+                            class="time-btn"
+                            type="button"
+                        >
+                            12:00 PM
+                        </button>
+
+                    </div>
+
+
+                    <h4>
+                        Evening
+                    </h4>
+
+
+                    <div class="time-options">
+
+                        <button
+                            class="time-btn"
+                            type="button"
+                        >
+                            5:00 PM
+                        </button>
+
+                        <button
+                            class="time-btn"
+                            type="button"
+                        >
+                            6:00 PM
+                        </button>
+
+                        <button
+                            class="time-btn"
+                            type="button"
+                        >
+                            7:00 PM
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- AI CLINICAL SYMPTOM TRIAGE & SMART DOCTOR MATCHER -->
+            <div class="appointment-card ai-triage-card" style="border: 1px solid #b8ebd4; background: linear-gradient(135deg, #ffffff 0%, #f4fbf8 100%);">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+                    <div>
+                        <h2 style="margin:0 0 4px; color:#123829;">
+                            <i class="fa-solid fa-wand-magic-sparkles" style="color:#0b9f6e;"></i> AI Clinical Symptom Triage & Prep
+                        </h2>
+                        <p style="margin:0; font-size:12.5px; color:#5c7066;">
+                            Describe symptoms in natural language. Our clinical AI matches the right specialist, evaluates triage urgency, and structures questions for your doctor.
+                        </p>
+                    </div>
+                    <span style="font-size:10px; font-weight:800; background:#0b9f6e; color:white; padding:4px 8px; border-radius:12px; letter-spacing:0.5px;">AI ASSISTED</span>
+                </div>
+
+                <div style="display:flex; gap:8px; margin-bottom:10px;">
+                    <div style="flex:1; position:relative;">
+                        <input
+                            type="text"
+                            id="aiSymptomInput"
+                            placeholder="e.g., persistent dry cough and sore throat for 3 days..."
+                            style="width:100%; border:1px solid #c9dec5; border-radius:8px; padding:11px 40px 11px 12px; font-size:13px; outline:none; background:#ffffff;"
+                        >
+                        <button
+                            type="button"
+                            id="aiVoiceSymptomBtn"
+                            title="Speak symptoms (Microphone)"
+                            style="position:absolute; right:8px; top:50%; transform:translateY(-50%); border:none; background:none; color:#0b9f6e; font-size:16px; cursor:pointer;"
+                        >
+                            <i class="fa-solid fa-microphone"></i>
+                        </button>
+                    </div>
+                    <button
+                        type="button"
+                        id="aiAnalyzeSymptomBtn"
+                        style="background:#0b9f6e; color:white; border:none; border-radius:8px; padding:0 16px; font-weight:700; font-size:13px; cursor:pointer; display:flex; align-items:center; gap:6px; white-space:nowrap;"
+                    >
+                        <i class="fa-solid fa-brain"></i> Analyze
+                    </button>
+                </div>
+
+                <!-- Quick Symptom Tags -->
+                <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px;">
+                    <button type="button" class="symptom-chip" onclick="quickFillSymptom('Seasonal fever, runny nose and sore throat')">🤧 Cold & Throat</button>
+                    <button type="button" class="symptom-chip" onclick="quickFillSymptom('Lower back muscle spasm after lifting and stiffness')">🧘 Back Stiffness</button>
+                    <button type="button" class="symptom-chip" onclick="quickFillSymptom('Red itchy rash on forearms with dry patches')">🌸 Skin Rash</button>
+                    <button type="button" class="symptom-chip" onclick="quickFillSymptom('Chest tightness and palpitations during exertion')">❤️ Heart & BP</button>
+                    <button type="button" class="symptom-chip" onclick="quickFillSymptom('Toddler with mild fever (100F) and low appetite')">👶 Child Health</button>
+                </div>
+
+                <!-- AI Triage Result Box -->
+                <div id="aiTriageResultBox" style="display:none; background:#ffffff; border:1px solid #c8e7d8; border-radius:10px; padding:14px; margin-top:8px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <span id="aiTriageUrgencyBadge" style="font-size:11px; font-weight:700; padding:3px 8px; border-radius:6px; background:#e6f8ef; color:#0b9f6e;">
+                            Urgency: Routine
+                        </span>
+                        <span style="font-size:12px; color:#607369;">
+                            Specialty: <strong id="aiMatchedSpecialty" style="color:#113b2b;">General Physician</strong>
+                        </span>
+                    </div>
+                    <p id="aiTriageSummaryText" style="margin:0 0 10px; font-size:12.5px; color:#3b4e45; line-height:1.5;"></p>
+                    <div id="aiSuggestedQuestionsBox" style="background:#f7faf8; border-radius:8px; padding:10px; margin-bottom:10px; font-size:12px; color:#475951;">
+                        <strong style="color:#0b9f6e; display:block; margin-bottom:4px;"><i class="fa-solid fa-clipboard-question"></i> Recommended Questions to Ask Doctor:</strong>
+                        <ul id="aiQuestionsList" style="margin:0; padding-left:18px; line-height:1.6;"></ul>
+                    </div>
+                    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                        <button type="button" id="btnApplyAiToConcern" style="background:#0b9f6e; color:white; border:none; border-radius:7px; padding:8px 14px; font-size:12px; font-weight:700; cursor:pointer;">
+                            <i class="fa-solid fa-check"></i> Fill "Reason for Consultation"
+                        </button>
+                        <button type="button" id="btnSwitchToRecommendedDoctor" style="background:#eaf8f1; color:#0b9f6e; border:1px solid #c2ebd7; border-radius:7px; padding:8px 14px; font-size:12px; font-weight:700; cursor:pointer; display:none;">
+                            <i class="fa-solid fa-user-doctor"></i> Switch to Matched Doctor
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PATIENT DETAILS -->
+
+            <div class="appointment-card">
+
+                <h2>
+
+                    <i class="fa-solid fa-user"></i>
+
+                    Patient Details
+
+                </h2>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label for="patientName">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="patientName"
+                            placeholder="Enter patient name"
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="patientMobile">
+                            Mobile Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="patientMobile"
+                            placeholder="Enter 10-digit mobile number"
+                            maxlength="10"
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group full-width">
+
+                        <label for="patientEmail">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="patientEmail"
+                            placeholder="Enter email address"
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group full-width">
+
+                        <label for="healthConcern">
+                            Reason for Consultation
+                        </label>
+
+                        <textarea
+                            id="healthConcern"
+                            rows="4"
+                            placeholder="Briefly describe your health concern..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CONFIRM -->
+
+            <div class="confirm-section">
+
+                <button
+                    class="confirm-btn"
+                    type="button"
+                    onclick="confirmAppointment()"
+                >
+
+                    <i class="fa-solid fa-calendar-check"></i>
+
+                    Confirm Appointment
+
+                </button>
+
+
+                <p>
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    Your information is kept private and secure.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= RIGHT SIDE ================= -->
+
+        <aside class="appointment-summary">
+
+
+            <div class="summary-card">
+
+                <h2>
+                    Appointment Summary
+                </h2>
+
+
+                <div class="summary-doctor">
+
+                    <div class="summary-avatar">
+
+                        <i class="fa-solid fa-user-doctor"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong id="summaryDoctorName">
+                            Dr. Rahul Sharma
+                        </strong>
+
+                        <span id="summarySpecialization">
+                            General Physician
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-divider"></div>
+
+
+                <div class="summary-row">
+
+                    <span>
+
+                        <i class="fa-solid fa-video"></i>
+
+                        Consultation
+
+                    </span>
+
+                    <strong id="summaryConsultation">
+                        Video Consultation
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+
+                        <i class="fa-solid fa-calendar"></i>
+
+                        Date
+
+                    </span>
+
+                    <strong id="summaryDate">
+                        Select date
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+
+                        <i class="fa-solid fa-clock"></i>
+
+                        Time
+
+                    </span>
+
+                    <strong id="summaryTime">
+                        Select time
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-divider"></div>
+
+
+                <div class="fee-row">
+
+                    <span>
+                        Consultation Fee
+                    </span>
+
+                    <strong id="summaryFee">
+                        ₹499
+                    </strong>
+
+                </div>
+
+
+                <div class="fee-row">
+
+                    <span>
+                        Platform Fee
+                    </span>
+
+                    <strong>
+                        ₹0
+                    </strong>
+
+                </div>
+
+
+                <div class="total-row">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong id="summaryTotal">
+                        ₹499
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- TRUST CARD -->
+
+            <div class="trust-card">
+
+                <div>
+
+                    <i class="fa-solid fa-shield-heart"></i>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Safe &amp; Secure
+                    </strong>
+
+                    <p>
+                        Your personal and consultation
+                        information is protected.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- HELP -->
+
+            <div class="help-card">
+
+                <i class="fa-solid fa-headset"></i>
+
+                <div>
+
+                    <strong>
+                        Need Help?
+                    </strong>
+
+                    <p>
+                        Our support team is available
+                        to assist you.
+                    </p>
+
+                    <a href="#">
+                        Contact Support
+                    </a>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+</main>
+
+
+
+<!-- ================= SUCCESS MODAL ================= -->
+
+<div
+    id="successModal"
+    class="success-modal"
+>
+
+    <div class="success-box">
+
+        <div class="success-icon">
+
+            <i class="fa-solid fa-check"></i>
+
+        </div>
+
+
+        <h2>
+            Appointment Confirmed!
+        </h2>
+
+
+        <p>
+            Your doctor appointment has been
+            successfully booked.
+        </p>
+
+
+        <div class="appointment-id-box">
+
+            <span>
+                Appointment ID
+            </span>
+
+            <strong id="appointmentId">
+                HK-000000
+            </strong>
+
+        </div>
+
+
+        <div class="success-details">
+
+            <p>
+                <strong>Doctor:</strong>
+                <span id="successDoctor">
+                    Dr. Rahul Sharma
+                </span>
+            </p>
+
+
+            <p>
+                <strong>Date:</strong>
+                <span id="successDate">
+                    -
+                </span>
+            </p>
+
+
+            <p>
+                <strong>Time:</strong>
+                <span id="successTime">
+                    -
+                </span>
+            </p>
+
+        </div>
+
+
+        <button
+            onclick="goToDoctors()"
+            class="success-btn"
+        >
+
+            Done
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+<script>if (typeof io === "undefined") { document.write('<script src="/socket.io/socket.io.js"><\/script>'); }</script>
+<script type="module" src="../js/appointment.js"></script>
+<script type="module" src="../js/nav-auth.js"></script>
+</body>
+
+</html>

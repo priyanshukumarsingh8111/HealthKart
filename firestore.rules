@@ -1,0 +1,76 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ========================================================
+    // HEALTHKART AI - FIRESTORE SECURITY RULES
+    // Project: healthkart-e4e37
+    // ========================================================
+
+    // 1. User Profiles & Personal Health Records
+    match /users/{userId} {
+      // User can manage their own profile; authenticated users can read basic profile info
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // 2. Doctor Directory
+    match /doctors/{doctorId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // 3. Telehealth Appointments (Visible in Firebase Console)
+    // Patients create bookings, doctors review, both can update status
+    match /appointments/{appointmentId} {
+      allow read, create, update: if true;
+      allow delete: if request.auth != null;
+    }
+
+    // 4. Real-Time WebRTC Video Consultation Rooms & Signaling
+    // Enables direct P2P video call connection between Patient and Doctor
+    match /calls/{callId} {
+      allow read, write: if true;
+
+      // WebRTC ICE Candidate exchange subcollections
+      match /offerCandidates/{candidateId} {
+        allow read, write: if true;
+      }
+      match /answerCandidates/{candidateId} {
+        allow read, write: if true;
+      }
+      match /callerCandidates/{candidateId} {
+        allow read, write: if true;
+      }
+      match /calleeCandidates/{candidateId} {
+        allow read, write: if true;
+      }
+
+      // In-call real-time chat messages
+      match /messages/{messageId} {
+        allow read, write: if true;
+      }
+    }
+
+    // 5. Digital Prescriptions (Issued by Doctor during/after Video Call)
+    match /prescriptions/{prescriptionId} {
+      allow read, write: if true;
+    }
+
+    // 6. Medicine & Yoga Reminders
+    match /reminders/{reminderId} {
+      allow read, write: if true;
+    }
+
+    // 7. Medicine Orders
+    match /orders/{orderId} {
+      allow read, write: if true;
+    }
+
+    // 8. Connectivity Diagnostic / Test collection
+    match /test/{testId} {
+      allow read, write: if true;
+    }
+  }
+}

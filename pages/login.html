@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login - HealthKart</title>
+
+    <link rel="stylesheet" href="../css/auth.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+    <div class="auth-page">
+
+        <!-- LEFT SECTION -->
+        <div class="auth-left">
+
+            <div class="brand">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+
+                <span>Health<span>Kart</span></span>
+            </div>
+
+            <div class="left-content">
+
+                <h1>Your health,<br>
+                    <span>our priority.</span>
+                </h1>
+
+                <p>
+                    Manage medicines, consult doctors, compare prices
+                    and keep your health records in one place.
+                </p>
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-shield-heart"></i>
+                    </div>
+
+                    <div>
+                        <h3>Secure & Private</h3>
+                        <p>Your health information stays protected.</p>
+                    </div>
+
+                </div>
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+
+                    <div>
+                        <h3>Expert Doctors</h3>
+                        <p>Connect with qualified healthcare professionals.</p>
+                    </div>
+
+                </div>
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-pills"></i>
+                    </div>
+
+                    <div>
+                        <h3>Easy Healthcare</h3>
+                        <p>Everything you need for your health journey.</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SECTION -->
+        <div class="auth-right">
+
+            <div class="auth-card">
+
+                <div class="mobile-brand">
+                    <div class="brand-icon">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    </div>
+
+                    <span>Health<span>Kart</span></span>
+                </div>
+
+                <div class="auth-heading">
+
+                    <h2>Welcome back</h2>
+
+                    <p>
+                        Login to continue to your HealthKart account
+                    </p>
+
+                </div>
+
+
+                <!-- LOGIN FORM -->
+                <form id="loginForm">
+
+                    <div class="input-group">
+
+                        <label for="loginEmail">
+                            Email Address
+                        </label>
+
+                        <div class="input-box">
+
+                            <i class="fa-regular fa-envelope"></i>
+
+                            <input
+                                type="email"
+                                id="loginEmail"
+                                placeholder="Enter your email"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <div class="password-label">
+
+                            <label for="loginPassword">
+                                Password
+                            </label>
+
+                            <a href="#" id="forgotPassword">
+                                Forgot password?
+                            </a>
+
+                        </div>
+
+                        <div class="input-box">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+                                type="password"
+                                id="loginPassword"
+                                placeholder="Enter your password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="loginPasswordToggle"
+                            >
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="remember-row">
+
+                        <label class="remember">
+
+                            <input
+                                type="checkbox"
+                                id="rememberMe"
+                            >
+
+                            <span>Remember me</span>
+
+                        </label>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="auth-button"
+                    >
+                        Login
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                </form>
+
+
+                <div class="divider">
+                    <span>QUICK TEST ACCOUNTS</span>
+                </div>
+
+                <div style="display:flex; flex-direction:column; gap:10px; margin: 12px 0 20px;">
+                    <button type="button" onclick="handleQuickLogin('patient')" style="display:flex; align-items:center; justify-content:center; gap:8px; padding:11px; background:#f0faf6; border:1px solid #bce6d7; color:#0b9f6e; border-radius:9px; font-weight:700; font-size:13px; cursor:pointer;">
+                        <i class="fa-solid fa-user"></i> Quick Login as Patient (Priyanshu)
+                    </button>
+                    <button type="button" onclick="handleQuickLogin('doctor')" style="display:flex; align-items:center; justify-content:center; gap:8px; padding:11px; background:#f4f7fb; border:1px solid #cfe0f3; color:#1a62af; border-radius:9px; font-weight:700; font-size:13px; cursor:pointer;">
+                        <i class="fa-solid fa-user-doctor"></i> Quick Login as Doctor (Dr. Rahul Sharma)
+                    </button>
+                </div>
+
+                <div class="signup-text">
+                    Don't have an account?
+                    <a href="signup.html">
+                        Create account
+                    </a>
+                </div>
+
+
+                <div class="back-home">
+
+                    <a href="../index.html">
+
+                        <i class="fa-solid fa-arrow-left"></i>
+
+                        Back to HealthKart
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script type="module" src="../js/auth.js"></script>
+</body>
+</html>

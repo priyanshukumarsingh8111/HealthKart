@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard | HealthKart</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../css/doctor-dashboard.css">
+</head>
+
+<body>
+
+<!-- Header -->
+<header class="navbar">
+    <a href="../index.html" class="logo">
+        <i class="fa-solid fa-heart-pulse"></i>
+        <span>Health<span>Kart</span></span>
+    </a>
+
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="doctors.html">Doctors Directory</a>
+        <a href="doctor-dashboard.html" class="active" style="color:#0b9f6e;">Doctor Portal</a>
+        <a href="my-appointments.html">Patient Appointments</a>
+    </nav>
+
+    <div class="nav-actions">
+        <a href="doctors.html" style="font-size:13px; font-weight:700; color:#0b9f6e; text-decoration:none;">
+            <i class="fa-solid fa-user-doctor"></i> Doctors Directory
+        </a>
+    </div>
+</header>
+
+<main class="doctor-dash-container">
+
+    <!-- Doctor Hero Banner -->
+    <section class="doctor-hero-banner">
+        <div class="doctor-profile-preview">
+            <div class="doctor-avatar-circle">
+                <img id="dashDoctorAvatar" src="../images/doctors/rahul-sharma.jpg" alt="Doctor" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=600';">
+            </div>
+            <div class="doctor-welcome">
+                <h1 id="dashDoctorName">Dr. Rahul Sharma</h1>
+                <p id="dashDoctorHospital">General Physician &bull; Max Super Speciality Hospital, New Delhi</p>
+            </div>
+        </div>
+
+        <!-- Doctor Portal Switcher -->
+        <div class="doctor-selector-pill">
+            <i class="fa-solid fa-user-doctor"></i>
+            <label for="doctorSelectDropdown" style="font-size:12px; opacity:0.8;">Switch Doctor:</label>
+            <select id="doctorSelectDropdown">
+                <option value="rahul">Dr. Rahul Sharma (General Physician)</option>
+                <option value="priya">Dr. Priya Mehta (Dermatologist)</option>
+                <option value="amit">Dr. Amit Verma (Cardiologist)</option>
+                <option value="neha">Dr. Neha Kapoor (Pediatrician)</option>
+                <option value="arjun">Dr. Arjun Singh (Orthopedic)</option>
+                <option value="ananya">Dr. Ananya Gupta (General Physician)</option>
+            </select>
+        </div>
+    </section>
+
+    <!-- Metrics Grid -->
+    <div class="dash-stats-grid">
+        <div class="dash-stat-card">
+            <div class="stat-icon">
+                <i class="fa-solid fa-calendar-day"></i>
+            </div>
+            <div class="stat-info">
+                <strong id="statTodayCount">0</strong>
+                <span>Today's Consultations</span>
+            </div>
+        </div>
+
+        <div class="dash-stat-card">
+            <div class="stat-icon" style="background:#eef4ff; color:#2563eb;">
+                <i class="fa-solid fa-calendar-check"></i>
+            </div>
+            <div class="stat-info">
+                <strong id="statUpcomingCount">0</strong>
+                <span>Upcoming Appointments</span>
+            </div>
+        </div>
+
+        <div class="dash-stat-card">
+            <div class="stat-icon" style="background:#fef3c7; color:#d97706;">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+            </div>
+            <div class="stat-info">
+                <strong id="statTotalCount">0</strong>
+                <span>Total Bookings</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="dash-tabs">
+        <button type="button" class="dash-tab-btn active" data-tab="upcoming">
+            <i class="fa-regular fa-calendar-check"></i> Upcoming Consultations
+        </button>
+        <button type="button" class="dash-tab-btn" data-tab="today">
+            <i class="fa-solid fa-calendar-day"></i> Today's Schedule
+        </button>
+        <button type="button" class="dash-tab-btn" data-tab="all">
+            <i class="fa-solid fa-list-check"></i> All Patient Records
+        </button>
+    </div>
+
+    <!-- Appointments Table / Cards -->
+    <div class="doctor-appt-table" id="doctorApptList">
+        <div style="text-align:center; padding:50px; color:#687970;">
+            <i class="fa-solid fa-spinner fa-spin" style="font-size:26px; color:#0b9f6e; margin-bottom:10px; display:block;"></i>
+            Loading doctor consultations...
+        </div>
+    </div>
+
+    <!-- DOCTOR PRESCRIPTION PAD MODAL -->
+    <div class="modal-overlay" id="doctorDashboardRxModal" style="display:none;">
+        <div class="rx-modal-card">
+            <div class="rx-modal-header">
+                <div>
+                    <h3 style="margin:0 0 4px; font-size:18px; color:#172520;">
+                        <i class="fa-solid fa-file-prescription" style="color:#0b9f6e;"></i> Issue Digital Prescription
+                    </h3>
+                    <p style="margin:0; font-size:12.5px; color:#687b72;" id="rxModalSubtitle">
+                        Write prescription for patient. Medicines & Yoga reminders will be automatically scheduled for the patient.
+                    </p>
+                </div>
+                <button type="button" class="rx-close-btn" id="closeDashRxModalBtn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <form id="dashDoctorRxForm" class="rx-form-content">
+                <input type="hidden" id="dashRxAppointmentId" />
+                <input type="hidden" id="dashRxPatientName" />
+                <input type="hidden" id="dashRxPatientEmail" />
+                <input type="hidden" id="dashRxPatientMobile" />
+
+                <div class="rx-form-group">
+                    <label>Patient Diagnosis & Clinical Findings *</label>
+                    <input type="text" id="dashRxDiagnosis" required placeholder="e.g. Acute upper respiratory infection & posture fatigue" />
+                </div>
+
+                <!-- Medicines Section -->
+                <div class="rx-section-block">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <label style="font-weight:700; font-size:13px; color:#172520;">
+                            <i class="fa-solid fa-pills" style="color:#0b9f6e;"></i> Prescribed Medicines (Eating Schedule)
+                        </label>
+                        <button type="button" class="rx-add-btn" id="dashRxAddMedBtn">
+                            <i class="fa-solid fa-plus"></i> Add Medicine
+                        </button>
+                    </div>
+                    <div id="dashRxMedicinesContainer" class="rx-items-list">
+                        <!-- Dynamic Medicine Rows -->
+                    </div>
+                </div>
+
+                <!-- Yoga & Lifestyle Section -->
+                <div class="rx-section-block">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <label style="font-weight:700; font-size:13px; color:#172520;">
+                            <i class="fa-solid fa-spa" style="color:#0284c7;"></i> Prescribed Yoga & Lifestyle Routines
+                        </label>
+                        <button type="button" class="rx-add-btn" id="dashRxAddYogaBtn" style="background:#e0f2fe; color:#0284c7;">
+                            <i class="fa-solid fa-plus"></i> Add Yoga Routine
+                        </button>
+                    </div>
+                    <div id="dashRxYogaContainer" class="rx-items-list">
+                        <!-- Dynamic Yoga Rows -->
+                    </div>
+                </div>
+
+                <div class="rx-form-group">
+                    <label>Doctor Advice & Dietary Guidelines</label>
+                    <textarea id="dashRxAdvice" rows="2" placeholder="e.g. Stay hydrated (3L water), avoid cold drinks, take light warm meals."></textarea>
+                </div>
+
+                <div class="rx-modal-actions">
+                    <button type="button" class="rx-cancel-btn" id="cancelDashRxBtn">Cancel</button>
+                    <button type="submit" class="rx-submit-btn" id="submitDashRxBtn">
+                        <i class="fa-solid fa-paper-plane"></i> Issue Prescription & Sync AI Reminders
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</main>
+
+<script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+<script>if (typeof io === "undefined") { document.write('<script src="/socket.io/socket.io.js"><\/script>'); }</script>
+<script type="module" src="../js/doctor-dashboard.js"></script>
+<script type="module" src="../js/nav-auth.js"></script>
+</body>
+</html>
