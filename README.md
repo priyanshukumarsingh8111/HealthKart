@@ -6,11 +6,6 @@ https://relaxed-patient-9c2818.netlify.app/
 <div align="center">
 💚 HealthKart
 A smart healthcare platform for medicines, price comparison, doctor consultations, appointments, prescriptions, health records, reminders and orders — all in one place.
-![Live Demo](https://img.shields.io/badge/Live%20Demo-Netlify-0b9f6e?style=for-the-badge&logo=netlify&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-Express%205-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![Socket.IO](https://img.shields.io/badge/Socket.IO-4.8-010101?style=for-the-badge&logo=socketdotio&logoColor=white)
-![Firebase](https://img.shields.io/badge/Firebase-Auth%20%2B%20Firestore-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
-![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
 Built by Team PharmaCoders
 Live Demo · Features · Getting Started · API Reference · Roadmap
 </div>
