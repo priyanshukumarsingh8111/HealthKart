@@ -235,7 +235,7 @@ HealthKart is a project prototype. Before production use:
 
 ## 🤝 Contributing
 
-Contributions are welcome:
+Contributions are most welcome:
 
 1. Fork the repository
 2. Create a branch: `git checkout -b feature/your-feature`
@@ -256,6 +256,7 @@ Released under the **MIT License**. See [LICENSE](LICENSE).
 <div align="center">
 
 **If you find HealthKart useful, please give it a ⭐**
+
 
 </div>
 ing README (1).md…]()
