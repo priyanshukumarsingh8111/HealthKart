@@ -43,7 +43,7 @@ Patients can discover medicines, compare prices, book doctors, join live video c
 | 📅 | **Appointment booking** | Slot-based booking, cancellation and a "My Appointments" view |
 | 📹 | **Video consultation** | WebRTC video calls with in-call chat, screen sharing and in-call prescriptions for better consulatation  |
 | 💊 | **Prescriptions** | Doctors issue prescriptions; patients view them in their account |
-| ⏰ | **Reminders** | Medicine and yoga reminders, generated automatically from prescriptions |
+| ⏰ | **Reminders** | Medicine and yoga reminders, generated automatically from prescriptions recommended by the concern doctor |
 | 🔔 | **Notifications** | Appointment and prescription alerts with mark-as-read |
 | 🗂️ | **Health records** | Personal records on the "My Health" page |
 | 🤖 | **AI health agent** | Answers questions, explains medicines, schedules reminders from plain text (*"remind me to take my medicine at 8 pm"*) |
