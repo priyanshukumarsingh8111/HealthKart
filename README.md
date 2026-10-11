@@ -249,7 +249,7 @@ Released under the **MIT License**. See [LICENSE](LICENSE).
 
 ## 👥 Team
 
-**Team PharmaCoders** · Maintained by [@priyanshukumarsingh8111](https://github.com/priyanshukumarsingh8111)
+**Team PharmaCoders** · Maintained by (https://github.com/priyanshukumarsingh8111)
 
 ---
 
