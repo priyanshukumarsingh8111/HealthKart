@@ -41,7 +41,7 @@ Patients can discover medicines, compare prices, book doctors, join live video c
 | 🛒 | **Cart, wishlist, checkout** | Add to cart, save favourites, place orders, view order history |
 | 🩺 | **Doctor directory** | Doctor listing with individual profile pages |
 | 📅 | **Appointment booking** | Slot-based booking, cancellation and a "My Appointments" view |
-| 📹 | **Video consultation** | WebRTC video calls with in-call chat, screen sharing and in-call prescriptions |
+| 📹 | **Video consultation** | WebRTC video calls with in-call chat, screen sharing and in-call prescriptions for better consulatation  |
 | 💊 | **Prescriptions** | Doctors issue prescriptions; patients view them in their account |
 | ⏰ | **Reminders** | Medicine and yoga reminders, generated automatically from prescriptions |
 | 🔔 | **Notifications** | Appointment and prescription alerts with mark-as-read |
